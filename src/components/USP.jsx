@@ -9,39 +9,39 @@ const USP = () => {
   const benefits = [
     {
       icon: FiZap,
-      title: "Deploy in Seconds",
-      description: "One-click deployment with zero configuration. From code to live app in under 30 seconds.",
-      stat: "30s deployment"
+      title: "Instant Access",
+      description: "Purchase and start using professional web applications immediately. No waiting, no setup.",
+      stat: "Ready in seconds"
     },
     {
       icon: FiShield,
-      title: "Enterprise Security",
-      description: "Built-in SSL, DDoS protection, and automated security updates. Sleep peacefully.",
-      stat: "99.9% secure"
+      title: "Enterprise Quality",
+      description: "All apps are professionally built, tested, and maintained by expert developers.",
+      stat: "99.9% reliability"
     },
     {
       icon: FiTrendingUp,
-      title: "Auto-Scaling",
-      description: "Handle traffic spikes effortlessly. From 10 to 10 million users without breaking a sweat.",
-      stat: "Infinite scale"
+      title: "Cost Effective",
+      description: "Get professional applications for a fraction of custom development costs.",
+      stat: "90% cost savings"
     },
     {
       icon: FiHeart,
-      title: "Beautiful by Default",
-      description: "Neumorphic design system ensures your apps look stunning on every device.",
-      stat: "Premium UI"
+      title: "Beautiful Design",
+      description: "Every application features modern, responsive design that works perfectly on all devices.",
+      stat: "Premium UI/UX"
     },
     {
       icon: FiGlobe,
-      title: "Global Performance",
-      description: "Lightning-fast CDN with 200+ edge locations worldwide. Your users will love the speed.",
-      stat: "< 100ms load"
+      title: "Wide Selection",
+      description: "Choose from hundreds of applications across different categories and industries.",
+      stat: "500+ apps available"
     },
     {
       icon: FiCpu,
-      title: "Smart Optimization",
-      description: "AI-powered performance optimization automatically tunes your app for peak performance.",
-      stat: "3x faster"
+      title: "Regular Updates",
+      description: "All purchased applications receive regular updates, new features, and security patches.",
+      stat: "Always current"
     }
   ];
 
@@ -59,12 +59,12 @@ const USP = () => {
             <span className="text-neu-700 font-medium">The Umbrella Advantage</span>
           </div>
           <h2 className="text-3xl lg:text-5xl font-bold text-neu-900 mb-6">
-            Why Umbrella Changes
-            <span className="gradient-text block">Everything</span>
+            Why Choose Ready-Made
+            <span className="gradient-text block">Applications</span>
           </h2>
           <p className="text-xl text-neu-600 max-w-3xl mx-auto">
-            We've reimagined web app hosting from the ground up. No more complexity, 
-            no more headaches, just beautiful apps that work perfectly.
+            Get professional, feature-complete web applications instantly. Skip months of development 
+            and thousands in costs with our curated marketplace of premium solutions.
           </p>
         </motion.div>
 
@@ -100,35 +100,35 @@ const USP = () => {
           className="neu-card p-8 max-w-4xl mx-auto"
         >
           <h3 className="text-2xl font-bold text-neu-900 mb-8 text-center">
-            Traditional Hosting vs Umbrella
+            Custom Development vs Umbrella Marketplace
           </h3>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
               <h4 className="text-lg font-semibold text-red-700 flex items-center gap-2">
                 <SafeIcon icon={FiX} className="w-5 h-5" />
-                Traditional Hosting
+                Custom Development
               </h4>
               <ul className="space-y-2 text-neu-600">
-                <li>• Hours of setup and configuration</li>
-                <li>• Complex server management</li>
-                <li>• Multiple bills and hidden costs</li>
+                <li>• 3-6 months development time</li>
+                <li>• $50,000+ development costs</li>
+                <li>• Ongoing maintenance burden</li>
                 <li>• Security vulnerabilities</li>
-                <li>• Poor performance and downtime</li>
-                <li>• Manual scaling and maintenance</li>
+                <li>• Limited features due to budget</li>
+                <li>• No guarantee of quality</li>
               </ul>
             </div>
             <div className="space-y-4">
               <h4 className="text-lg font-semibold text-green-700 flex items-center gap-2">
                 <SafeIcon icon={FiZap} className="w-5 h-5" />
-                Umbrella Platform
+                Umbrella Marketplace
               </h4>
               <ul className="space-y-2 text-neu-600">
-                <li>• Deploy in 30 seconds</li>
-                <li>• Zero server management</li>
-                <li>• Simple, transparent pricing</li>
+                <li>• Instant access and setup</li>
+                <li>• $29-$199 one-time purchase</li>
+                <li>• Automatic updates included</li>
                 <li>• Enterprise-grade security</li>
-                <li>• Lightning-fast global CDN</li>
-                <li>• Automatic scaling and updates</li>
+                <li>• Full-featured applications</li>
+                <li>• Proven quality and reliability</li>
               </ul>
             </div>
           </div>

@@ -28,20 +28,23 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-neu-600 hover:text-neu-800 transition-colors">
-              Features
-            </a>
+            <button
+              onClick={() => navigate('/marketplace')}
+              className="text-neu-600 hover:text-neu-800 transition-colors"
+            >
+              Browse Apps
+            </button>
             <a href="#pricing" className="text-neu-600 hover:text-neu-800 transition-colors">
               Pricing
             </a>
-            <a href="#about" className="text-neu-600 hover:text-neu-800 transition-colors">
-              About
+            <a href="#features" className="text-neu-600 hover:text-neu-800 transition-colors">
+              Features
             </a>
             <button
               onClick={() => navigate('/dashboard')}
               className="neu-button px-6 py-3 hover:scale-105 transition-transform"
             >
-              <span className="text-neu-700 font-medium">Dashboard</span>
+              <span className="text-neu-700 font-medium">My Library</span>
             </button>
           </nav>
 
@@ -66,20 +69,23 @@ const Header = () => {
             className="md:hidden mt-6 pb-6 border-t border-neu-200 pt-6"
           >
             <div className="flex flex-col gap-4">
-              <a href="#features" className="text-neu-600 hover:text-neu-800 transition-colors">
-                Features
-              </a>
+              <button
+                onClick={() => navigate('/marketplace')}
+                className="text-neu-600 hover:text-neu-800 transition-colors text-left"
+              >
+                Browse Apps
+              </button>
               <a href="#pricing" className="text-neu-600 hover:text-neu-800 transition-colors">
                 Pricing
               </a>
-              <a href="#about" className="text-neu-600 hover:text-neu-800 transition-colors">
-                About
+              <a href="#features" className="text-neu-600 hover:text-neu-800 transition-colors">
+                Features
               </a>
               <button
                 onClick={() => navigate('/dashboard')}
                 className="neu-button px-6 py-3 text-left"
               >
-                <span className="text-neu-700 font-medium">Dashboard</span>
+                <span className="text-neu-700 font-medium">My Library</span>
               </button>
             </div>
           </motion.nav>

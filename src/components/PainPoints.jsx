@@ -9,39 +9,39 @@ const PainPoints = () => {
   const painPoints = [
     {
       icon: FiClock,
-      title: "Endless Setup Time",
-      description: "Hours wasted configuring servers, domains, and deployment pipelines instead of building your app.",
-      impact: "40+ hours per project"
+      title: "Building from Scratch",
+      description: "Months wasted developing common features instead of focusing on core business logic.",
+      impact: "6+ months per project"
     },
     {
       icon: FiDollarSign,
-      title: "Hidden Costs Everywhere",
-      description: "Server costs, domain fees, SSL certificates, monitoring tools - expenses add up quickly.",
-      impact: "$200+ monthly"
+      title: "High Development Costs",
+      description: "Hiring developers and building custom solutions costs thousands for basic functionality.",
+      impact: "$50K+ development costs"
     },
     {
       icon: FiSettings,
-      title: "Complex Maintenance",
-      description: "Constant updates, security patches, and server monitoring eating into your productive time.",
-      impact: "60% of dev time"
+      title: "Maintenance Burden",
+      description: "Constant updates, bug fixes, and feature additions drain resources and time.",
+      impact: "40% of development time"
     },
     {
       icon: FiTrendingDown,
-      title: "Poor Performance",
-      description: "Slow loading times and downtime hurt your users and damage your reputation.",
-      impact: "30% user drop-off"
+      title: "Poor Quality Results",
+      description: "Rushed development leads to buggy, unreliable applications that hurt user experience.",
+      impact: "High user churn"
     },
     {
       icon: FiAlertTriangle,
-      title: "Security Nightmares",
-      description: "Vulnerabilities, breaches, and compliance issues keep you awake at night.",
-      impact: "High risk exposure"
+      title: "Security Vulnerabilities",
+      description: "Custom-built solutions often lack proper security measures, exposing sensitive data.",
+      impact: "Data breach risks"
     },
     {
       icon: FiX,
-      title: "Scaling Headaches",
-      description: "Traffic spikes crash your site, and scaling solutions are complex and expensive.",
-      impact: "Lost opportunities"
+      title: "Limited Functionality",
+      description: "Budget constraints force compromises on features, resulting in incomplete solutions.",
+      impact: "Competitive disadvantage"
     }
   ];
 
@@ -55,12 +55,12 @@ const PainPoints = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl lg:text-5xl font-bold text-neu-900 mb-6">
-            Stop Fighting with
-            <span className="gradient-text block">Hosting Nightmares</span>
+            Stop Wasting Time on
+            <span className="gradient-text block">Custom Development</span>
           </h2>
           <p className="text-xl text-neu-600 max-w-3xl mx-auto">
-            Traditional hosting is broken. Developers waste countless hours on setup, maintenance, 
-            and troubleshooting instead of building amazing applications.
+            Why reinvent the wheel? Businesses waste months and thousands of dollars building 
+            common web applications that already exist as proven, professional solutions.
           </p>
         </motion.div>
 
@@ -98,11 +98,11 @@ const PainPoints = () => {
         >
           <div className="neu-card p-8 max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold text-neu-900 mb-4">
-              Sound Familiar?
+              There's a Better Way
             </h3>
             <p className="text-neu-600 text-lg">
-              You're not alone. 89% of developers report spending more time on infrastructure 
-              than actual development. It's time for a better way.
+              Skip the development headaches. Get professional, ready-to-use web applications 
+              that are tested, secure, and feature-complete from day one.
             </p>
           </div>
         </motion.div>

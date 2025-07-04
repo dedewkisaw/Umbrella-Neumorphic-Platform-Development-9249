@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiArrowRight, FiPlay, FiCloud, FiZap, FiShield } = FiIcons;
+const { FiArrowRight, FiPlay, FiShoppingBag, FiZap, FiShield } = FiIcons;
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -34,29 +34,29 @@ const Hero = () => {
                 className="neu-button inline-flex items-center gap-2 px-4 py-2"
               >
                 <SafeIcon icon={FiZap} className="w-4 h-4 text-blue-600" />
-                <span className="text-neu-700 text-sm font-medium">Premium Web App Platform</span>
+                <span className="text-neu-700 text-sm font-medium">Premium Web App Marketplace</span>
               </motion.div>
 
               <h1 className="text-4xl lg:text-6xl font-bold text-neu-900 leading-tight">
-                Host Beautiful
+                Discover Premium
                 <span className="gradient-text block">Web Applications</span>
-                Without the Hassle
+                Built by Experts
               </h1>
 
               <p className="text-xl text-neu-600 leading-relaxed">
-                Stop wrestling with complex deployments and server management. 
-                Umbrella provides a premium, neumorphic platform that makes hosting 
-                stunning web applications effortless and elegant.
+                Access a curated collection of professional web applications. 
+                Purchase individual apps or subscribe for unlimited access to our 
+                entire premium library of tools and solutions.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <button
-                onClick={() => navigate('/dashboard')}
+                onClick={() => navigate('/marketplace')}
                 className="neu-button px-8 py-4 hover:scale-105 transition-transform group"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-neu-700 font-semibold">Start Building</span>
+                  <span className="text-neu-700 font-semibold">Browse Apps</span>
                   <SafeIcon 
                     icon={FiArrowRight} 
                     className="w-5 h-5 text-neu-600 group-hover:translate-x-1 transition-transform" 
@@ -76,14 +76,14 @@ const Hero = () => {
             <div className="flex items-center gap-8 pt-8">
               <div className="flex items-center gap-2">
                 <SafeIcon icon={FiShield} className="w-5 h-5 text-green-600" />
-                <span className="text-neu-600 text-sm">99.9% Uptime</span>
+                <span className="text-neu-600 text-sm">Secure Payments</span>
               </div>
               <div className="flex items-center gap-2">
-                <SafeIcon icon={FiCloud} className="w-5 h-5 text-blue-600" />
-                <span className="text-neu-600 text-sm">Global CDN</span>
+                <SafeIcon icon={FiShoppingBag} className="w-5 h-5 text-blue-600" />
+                <span className="text-neu-600 text-sm">500+ Premium Apps</span>
               </div>
               <div className="text-neu-600 text-sm">
-                <span className="font-semibold">10K+</span> Apps Hosted
+                <span className="font-semibold">50K+</span> Happy Customers
               </div>
             </div>
           </motion.div>
@@ -96,7 +96,7 @@ const Hero = () => {
             className="relative"
           >
             <div className="relative">
-              {/* Main Dashboard Preview */}
+              {/* Main App Showcase */}
               <div className="neu-card p-8 animate-float">
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
@@ -109,10 +109,16 @@ const Hero = () => {
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4">
-                    {[1, 2, 3, 4].map((i) => (
+                    {[
+                      { name: 'E-commerce', price: '$49' },
+                      { name: 'Portfolio', price: '$29' },
+                      { name: 'SaaS Tool', price: '$79' },
+                      { name: 'Blog CMS', price: '$39' }
+                    ].map((app, i) => (
                       <div key={i} className="neu-card-inset p-4 space-y-2">
-                        <div className="w-full h-2 bg-neu-300 rounded"></div>
-                        <div className="w-3/4 h-2 bg-neu-200 rounded"></div>
+                        <div className="w-full h-8 bg-gradient-to-r from-blue-200 to-purple-200 rounded"></div>
+                        <div className="text-xs font-medium text-neu-700">{app.name}</div>
+                        <div className="text-xs text-blue-600 font-bold">{app.price}</div>
                       </div>
                     ))}
                   </div>
@@ -133,7 +139,7 @@ const Hero = () => {
                 transition={{ duration: 5, repeat: Infinity }}
                 className="absolute -bottom-4 -left-4 neu-button p-4"
               >
-                <SafeIcon icon={FiCloud} className="w-6 h-6 text-purple-600" />
+                <SafeIcon icon={FiShoppingBag} className="w-6 h-6 text-purple-600" />
               </motion.div>
             </div>
           </motion.div>

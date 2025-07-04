@@ -9,51 +9,51 @@ const Features = () => {
   const features = [
     {
       icon: FiCode,
-      title: "One-Click Deployment",
-      description: "Connect your GitHub repo and deploy instantly. No complex CI/CD pipelines needed.",
-      demo: "GitHub → Umbrella → Live App"
+      title: "Ready-to-Use Apps",
+      description: "Professional applications that work out of the box. No coding or setup required.",
+      demo: "Instant deployment"
     },
     {
       icon: FiGlobe,
-      title: "Global CDN",
-      description: "200+ edge locations worldwide ensure your app loads instantly everywhere.",
-      demo: "< 100ms worldwide"
+      title: "Multiple Categories",
+      description: "E-commerce, portfolios, blogs, SaaS tools, and more across various industries.",
+      demo: "500+ applications"
     },
     {
       icon: FiShield,
-      title: "Enterprise Security",
-      description: "SSL certificates, DDoS protection, and security monitoring included by default.",
-      demo: "99.9% uptime SLA"
+      title: "Quality Assured",
+      description: "Every app is thoroughly tested, secure, and follows modern development standards.",
+      demo: "Enterprise grade"
     },
     {
       icon: FiZap,
-      title: "Auto-Scaling",
-      description: "Handle traffic spikes seamlessly. From 10 to 10 million users automatically.",
-      demo: "Infinite scalability"
+      title: "Flexible Licensing",
+      description: "Choose individual purchases or unlimited access subscriptions that fit your needs.",
+      demo: "Own forever"
     },
     {
       icon: FiBarChart,
-      title: "Real-Time Analytics",
-      description: "Beautiful dashboards showing visitor stats, performance metrics, and more.",
-      demo: "Live insights"
+      title: "Usage Analytics",
+      description: "Track your purchased applications and monitor usage with detailed analytics.",
+      demo: "Detailed insights"
     },
     {
       icon: FiUsers,
-      title: "Team Collaboration",
-      description: "Invite team members, manage permissions, and collaborate on projects effortlessly.",
-      demo: "Unlimited teammates"
+      title: "Developer Support",
+      description: "Get direct support from the original developers for customizations and help.",
+      demo: "Expert assistance"
     },
     {
       icon: FiCloud,
-      title: "Automatic Backups",
-      description: "Your data is safe with automated backups and version control integration.",
-      demo: "24/7 protection"
+      title: "Cloud Integration",
+      description: "Seamlessly integrate with popular cloud services and APIs for enhanced functionality.",
+      demo: "Easy integration"
     },
     {
       icon: FiSmartphone,
-      title: "Mobile Optimized",
-      description: "Every app looks perfect on mobile with our responsive design system.",
-      demo: "Perfect on all devices"
+      title: "Mobile Responsive",
+      description: "All applications are optimized for mobile devices and provide excellent user experience.",
+      demo: "Perfect on mobile"
     }
   ];
 
@@ -68,11 +68,11 @@ const Features = () => {
         >
           <h2 className="text-3xl lg:text-5xl font-bold text-neu-900 mb-6">
             Everything You Need
-            <span className="gradient-text block">Built Right In</span>
+            <span className="gradient-text block">In One Marketplace</span>
           </h2>
           <p className="text-xl text-neu-600 max-w-3xl mx-auto">
-            No more juggling multiple services. Umbrella provides everything you need 
-            to build, deploy, and scale beautiful web applications.
+            Discover, purchase, and use professional web applications instantly. 
+            Our marketplace offers the largest collection of premium, ready-to-use solutions.
           </p>
         </motion.div>
 
@@ -111,30 +111,30 @@ const Features = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 <h3 className="text-2xl lg:text-3xl font-bold text-neu-900">
-                  See It in Action
+                  How It Works
                 </h3>
                 <p className="text-neu-600 text-lg">
-                  Watch how easy it is to deploy your first app on Umbrella. 
-                  From zero to production in under a minute.
+                  Getting started with professional web applications has never been easier. 
+                  Browse, purchase, and start using premium apps in minutes.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                       <span className="text-blue-600 font-bold text-sm">1</span>
                     </div>
-                    <span className="text-neu-700">Connect your GitHub repository</span>
+                    <span className="text-neu-700">Browse our curated marketplace</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                       <span className="text-blue-600 font-bold text-sm">2</span>
                     </div>
-                    <span className="text-neu-700">Choose your domain name</span>
+                    <span className="text-neu-700">Purchase or subscribe to applications</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                       <span className="text-blue-600 font-bold text-sm">3</span>
                     </div>
-                    <span className="text-neu-700">Click deploy and you're live!</span>
+                    <span className="text-neu-700">Download and start using immediately</span>
                   </div>
                 </div>
               </div>
@@ -142,16 +142,16 @@ const Features = () => {
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-xs text-neu-500">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Live deployment in progress...</span>
+                    <span>Premium marketplace ready...</span>
                   </div>
                   <div className="space-y-2">
                     <div className="w-full bg-neu-200 rounded-full h-2">
-                      <div className="bg-green-500 h-2 rounded-full w-3/4"></div>
+                      <div className="bg-green-500 h-2 rounded-full w-full"></div>
                     </div>
-                    <div className="text-xs text-neu-600">Deploying to global CDN...</div>
+                    <div className="text-xs text-neu-600">500+ apps available</div>
                   </div>
                   <div className="text-green-700 font-semibold">
-                    🎉 Deployed successfully!
+                    🎉 Ready to explore!
                   </div>
                 </div>
               </div>

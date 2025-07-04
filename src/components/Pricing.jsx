@@ -8,55 +8,54 @@ const { FiCheck, FiStar, FiZap, FiShield } = FiIcons;
 const Pricing = () => {
   const plans = [
     {
-      name: "Free",
-      price: "$0",
-      period: "forever",
-      description: "Perfect for getting started",
+      name: "Individual Purchase",
+      price: "$29-199",
+      period: "per app",
+      description: "Buy specific apps you need",
       features: [
-        "List unlimited apps",
-        "Basic app hosting",
-        "SSL certificates",
-        "Basic analytics",
-        "Community support"
+        "Own the app forever",
+        "Lifetime updates included",
+        "Commercial use license",
+        "Developer support",
+        "Source code access"
       ],
-      commission: "5% commission on sales",
-      buttonText: "Start Free",
+      highlight: "Perfect for specific needs",
+      buttonText: "Browse Apps",
       popular: false
     },
     {
-      name: "Pro",
-      price: "$29",
+      name: "Pro Access",
+      price: "$49",
       period: "month",
-      description: "For serious developers",
+      description: "Access to premium apps",
       features: [
-        "Everything in Free",
-        "0% commission on sales",
-        "Custom domains",
-        "Advanced analytics",
+        "Access 100+ premium apps",
+        "New apps added monthly",
         "Priority support",
-        "Featured app listings",
-        "Early access to new features"
+        "Advanced features unlocked",
+        "Commercial use included",
+        "Team collaboration tools"
       ],
-      commission: "0% commission - keep 100%",
+      highlight: "Most popular choice",
       buttonText: "Start Pro",
       popular: true
     },
     {
-      name: "Business",
+      name: "Unlimited Access",
       price: "$99",
       period: "month",
-      description: "For agencies and teams",
+      description: "Full marketplace access",
       features: [
-        "Everything in Pro",
-        "Team collaboration",
+        "Access to ALL applications",
+        "Exclusive early access",
         "White-label options",
-        "API access",
+        "API access included",
         "Custom integrations",
         "Dedicated account manager",
-        "Custom contract terms"
+        "Enterprise support"
       ],
-      commission: "0% commission - keep 100%",
-      buttonText: "Start Business",
+      highlight: "Best value for businesses",
+      buttonText: "Go Unlimited",
       popular: false
     }
   ];
@@ -71,11 +70,12 @@ const Pricing = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl lg:text-5xl font-bold text-neu-900 mb-6">
-            Simple, Fair
+            Simple, Transparent
             <span className="gradient-text block">Pricing</span>
           </h2>
           <p className="text-xl text-neu-600 max-w-3xl mx-auto">
-            Start for free, upgrade when you're ready. Our revenue-share model means we only succeed when you do.
+            Choose the option that works best for you. Buy individual apps or get unlimited access 
+            to our entire premium library.
           </p>
         </motion.div>
 
@@ -111,20 +111,18 @@ const Pricing = () => {
                 <div className="text-center">
                   <div className="flex items-baseline justify-center gap-2">
                     <span className="text-4xl font-bold text-neu-900">{plan.price}</span>
-                    {plan.price !== "$0" && (
-                      <span className="text-neu-600">/{plan.period}</span>
-                    )}
+                    <span className="text-neu-600">/{plan.period}</span>
                   </div>
                 </div>
 
-                {/* Commission Highlight */}
+                {/* Highlight */}
                 <div className={`neu-card-inset p-4 text-center ${
-                  plan.name === 'Free' ? 'bg-red-50' : 'bg-green-50'
+                  plan.popular ? 'bg-blue-50' : 'bg-green-50'
                 }`}>
                   <div className={`font-semibold ${
-                    plan.name === 'Free' ? 'text-red-700' : 'text-green-700'
+                    plan.popular ? 'text-blue-700' : 'text-green-700'
                   }`}>
-                    {plan.commission}
+                    {plan.highlight}
                   </div>
                 </div>
 
@@ -153,7 +151,7 @@ const Pricing = () => {
           ))}
         </div>
 
-        {/* Revenue Share Explanation */}
+        {/* Value Proposition */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -162,10 +160,10 @@ const Pricing = () => {
         >
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-neu-900 mb-4">
-              Why Revenue Sharing Works
+              Why Our Pricing Makes Sense
             </h3>
             <p className="text-neu-600 text-lg">
-              We only make money when you make money. This aligns our interests with your success.
+              Compare our prices to custom development costs and see the incredible value.
             </p>
           </div>
 
@@ -174,9 +172,9 @@ const Pricing = () => {
               <div className="neu-button p-4 inline-flex mx-auto">
                 <SafeIcon icon={FiZap} className="w-6 h-6 text-blue-600" />
               </div>
-              <h4 className="font-semibold text-neu-900">No Upfront Costs</h4>
+              <h4 className="font-semibold text-neu-900">Instant Value</h4>
               <p className="text-neu-600 text-sm">
-                Start selling immediately without any setup fees or monthly minimums.
+                Get professional applications immediately instead of waiting months for development.
               </p>
             </div>
 
@@ -184,9 +182,9 @@ const Pricing = () => {
               <div className="neu-button p-4 inline-flex mx-auto">
                 <SafeIcon icon={FiShield} className="w-6 h-6 text-green-600" />
               </div>
-              <h4 className="font-semibold text-neu-900">Fair & Transparent</h4>
+              <h4 className="font-semibold text-neu-900">Proven Quality</h4>
               <p className="text-neu-600 text-sm">
-                Only 5% commission on the free plan. No hidden fees or surprise charges.
+                Every app is tested, secure, and maintained by professional developers.
               </p>
             </div>
 
@@ -194,9 +192,9 @@ const Pricing = () => {
               <div className="neu-button p-4 inline-flex mx-auto">
                 <SafeIcon icon={FiStar} className="w-6 h-6 text-purple-600" />
               </div>
-              <h4 className="font-semibold text-neu-900">Aligned Success</h4>
+              <h4 className="font-semibold text-neu-900">Huge Savings</h4>
               <p className="text-neu-600 text-sm">
-                We invest in marketing and features that help you sell more apps.
+                Save 90%+ compared to custom development while getting better quality.
               </p>
             </div>
           </div>
@@ -215,30 +213,30 @@ const Pricing = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div>
-                <h4 className="font-semibold text-neu-900 mb-2">How does the commission work?</h4>
-                <p className="text-neu-600">We take 5% of each sale on the free plan. Pro and Business plans have 0% commission.</p>
+                <h4 className="font-semibold text-neu-900 mb-2">Do I own the apps I purchase?</h4>
+                <p className="text-neu-600">Yes! Individual purchases give you lifetime ownership with all future updates included.</p>
               </div>
               <div>
-                <h4 className="font-semibold text-neu-900 mb-2">When do I get paid?</h4>
-                <p className="text-neu-600">Payments are processed weekly. You'll receive your earnings minus commission every Friday.</p>
+                <h4 className="font-semibold text-neu-900 mb-2">Can I use apps commercially?</h4>
+                <p className="text-neu-600">All plans include commercial use licenses. Use purchased apps in your business without restrictions.</p>
               </div>
               <div>
-                <h4 className="font-semibold text-neu-900 mb-2">Can I set my own prices?</h4>
-                <p className="text-neu-600">Yes! You have complete control over your app pricing, including one-time, subscription, and free options.</p>
+                <h4 className="font-semibold text-neu-900 mb-2">What about customizations?</h4>
+                <p className="text-neu-600">Source code is included with purchases, and developers offer customization services.</p>
               </div>
             </div>
             <div className="space-y-6">
               <div>
-                <h4 className="font-semibent text-neu-900 mb-2">Is there a minimum payout?</h4>
-                <p className="text-neu-600">No minimum payout. Even if you earn $1, you'll receive it in your weekly payment.</p>
+                <h4 className="font-semibold text-neu-900 mb-2">How do subscriptions work?</h4>
+                <p className="text-neu-600">Subscriptions give you access to apps while active. Cancel anytime, no long-term commitments.</p>
               </div>
               <div>
-                <h4 className="font-semibold text-neu-900 mb-2">What payment methods do you support?</h4>
-                <p className="text-neu-600">We support PayPal, Stripe, and direct bank transfers in most countries.</p>
+                <h4 className="font-semibold text-neu-900 mb-2">Is support included?</h4>
+                <p className="text-neu-600">Yes! All plans include developer support for installation, setup, and basic customizations.</p>
               </div>
               <div>
-                <h4 className="font-semibold text-neu-900 mb-2">Can I upgrade or downgrade anytime?</h4>
-                <p className="text-neu-600">Yes! Change your plan anytime. Upgrades are instant, downgrades take effect at the next billing cycle.</p>
+                <h4 className="font-semibold text-neu-900 mb-2">Are there any hidden fees?</h4>
+                <p className="text-neu-600">No hidden fees. The price you see is what you pay, with all features and updates included.</p>
               </div>
             </div>
           </div>
