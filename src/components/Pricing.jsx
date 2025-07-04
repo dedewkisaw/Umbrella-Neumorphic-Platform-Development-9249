@@ -71,7 +71,9 @@ const Pricing = () => {
         >
           <h2 className="text-3xl lg:text-5xl font-bold text-neu-900 mb-6">
             Simple, Transparent
-            <span className="gradient-text block">Pricing</span>
+            <span className="gradient-text block" style={{ lineHeight: '1.2', paddingBottom: '0.1em' }}>
+              Pricing
+            </span>
           </h2>
           <p className="text-xl text-neu-600 max-w-3xl mx-auto">
             Choose the option that works best for you. Buy individual apps or get unlimited access 

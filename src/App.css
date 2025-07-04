@@ -2,46 +2,34 @@
 .neu-card {
   background: #f0f0f3;
   border-radius: 20px;
-  box-shadow: 
-    20px 20px 40px #bebebe,
-    -20px -20px 40px #ffffff;
+  box-shadow: 20px 20px 40px #bebebe, -20px -20px 40px #ffffff;
 }
 
 .neu-card-inset {
   background: #f0f0f3;
   border-radius: 20px;
-  box-shadow: 
-    inset 10px 10px 20px #bebebe,
-    inset -10px -10px 20px #ffffff;
+  box-shadow: inset 10px 10px 20px #bebebe, inset -10px -10px 20px #ffffff;
 }
 
 .neu-button {
   background: #f0f0f3;
   border-radius: 15px;
-  box-shadow: 
-    8px 8px 16px #bebebe,
-    -8px -8px 16px #ffffff;
+  box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
   transition: all 0.3s ease;
 }
 
 .neu-button:hover {
-  box-shadow: 
-    4px 4px 8px #bebebe,
-    -4px -4px 8px #ffffff;
+  box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
 }
 
 .neu-button:active {
-  box-shadow: 
-    inset 4px 4px 8px #bebebe,
-    inset -4px -4px 8px #ffffff;
+  box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
 }
 
 .neu-input {
   background: #f0f0f3;
   border-radius: 12px;
-  box-shadow: 
-    inset 6px 6px 12px #bebebe,
-    inset -6px -6px 12px #ffffff;
+  box-shadow: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff;
   border: none;
   outline: none;
 }
@@ -51,6 +39,12 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  /* Fix for clipped descenders */
+  display: inline-block;
+  padding-bottom: 0.1em;
+  line-height: 1.2;
+  /* Ensure proper spacing */
+  margin-bottom: 0.1em;
 }
 
 .hero-gradient {
@@ -61,4 +55,18 @@
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Additional fix for gradient text in headings */
+h1 .gradient-text,
+h2 .gradient-text,
+h3 .gradient-text {
+  line-height: 1.1;
+  padding-bottom: 0.15em;
+}
+
+/* Ensure proper spacing for block gradient text */
+.gradient-text.block {
+  display: block;
+  margin-top: 0.2em;
 }

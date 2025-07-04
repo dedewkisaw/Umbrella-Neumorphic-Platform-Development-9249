@@ -68,7 +68,9 @@ const Features = () => {
         >
           <h2 className="text-3xl lg:text-5xl font-bold text-neu-900 mb-6">
             Everything You Need
-            <span className="gradient-text block">In One Marketplace</span>
+            <span className="gradient-text block" style={{ lineHeight: '1.2', paddingBottom: '0.1em' }}>
+              In One Marketplace
+            </span>
           </h2>
           <p className="text-xl text-neu-600 max-w-3xl mx-auto">
             Discover, purchase, and use professional web applications instantly. 

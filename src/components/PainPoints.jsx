@@ -56,7 +56,9 @@ const PainPoints = () => {
         >
           <h2 className="text-3xl lg:text-5xl font-bold text-neu-900 mb-6">
             Stop Wasting Time on
-            <span className="gradient-text block">Custom Development</span>
+            <span className="gradient-text block" style={{ lineHeight: '1.2', paddingBottom: '0.1em' }}>
+              Custom Development
+            </span>
           </h2>
           <p className="text-xl text-neu-600 max-w-3xl mx-auto">
             Why reinvent the wheel? Businesses waste months and thousands of dollars building 

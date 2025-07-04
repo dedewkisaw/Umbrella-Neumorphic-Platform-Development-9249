@@ -39,7 +39,9 @@ const Hero = () => {
 
               <h1 className="text-4xl lg:text-6xl font-bold text-neu-900 leading-tight">
                 Discover Premium
-                <span className="gradient-text block">Web Applications</span>
+                <span className="gradient-text block" style={{ lineHeight: '1.2', paddingBottom: '0.1em' }}>
+                  Web Applications
+                </span>
                 Built by Experts
               </h1>
 
