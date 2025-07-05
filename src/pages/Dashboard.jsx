@@ -14,6 +14,7 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('library');
   const [sortBy, setSortBy] = useState('recent');
   const [filterBy, setFilterBy] = useState('all');
+
   const [purchasedApps, setPurchasedApps] = useState([
     {
       id: 1,
@@ -122,7 +123,9 @@ const Dashboard = () => {
     console.log('Updating:', app.name);
     setPurchasedApps(apps =>
       apps.map(a =>
-        a.id === app.id ? { ...a, status: 'Active', lastUpdate: new Date().toISOString().split('T')[0] } : a
+        a.id === app.id
+          ? { ...a, status: 'Active', lastUpdate: new Date().toISOString().split('T')[0] }
+          : a
       )
     );
   };
@@ -130,7 +133,9 @@ const Dashboard = () => {
   const totalSpent = purchasedApps.reduce((sum, app) => sum + app.price, 0);
   const totalApps = purchasedApps.length;
   const totalDownloads = purchasedApps.reduce((sum, app) => sum + app.downloads, 0);
-  const avgRating = purchasedApps.length > 0 ? purchasedApps.reduce((sum, app) => sum + app.rating, 0) / purchasedApps.length : 0;
+  const avgRating = purchasedApps.length > 0
+    ? purchasedApps.reduce((sum, app) => sum + app.rating, 0) / purchasedApps.length
+    : 0;
 
   // Filter and sort apps
   const filteredAndSortedApps = purchasedApps
@@ -215,9 +220,7 @@ const Dashboard = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => setActiveTab(tab.id)}
-                className={`neu-button px-8 py-4 hover:scale-105 transition-transform flex-shrink-0 ${
-                  activeTab === tab.id ? 'bg-blue-500 text-white' : ''
-                }`}
+                className={`neu-button px-8 py-4 hover:scale-105 transition-transform flex-shrink-0 ${activeTab === tab.id ? 'bg-blue-500 text-white' : ''}`}
               >
                 <div className="flex items-center gap-3">
                   <SafeIcon icon={tab.icon} className="w-5 h-5" />
@@ -328,6 +331,7 @@ const Dashboard = () => {
                         <span className="text-green-700 font-medium text-sm">All Systems Operational</span>
                       </div>
                     </div>
+
                     {/* Beautiful Filter Dropdown */}
                     <div className="min-w-[150px]">
                       <DropdownMenu
@@ -339,6 +343,7 @@ const Dashboard = () => {
                         variant="success"
                       />
                     </div>
+
                     {/* Beautiful Sort Dropdown */}
                     <div className="min-w-[150px]">
                       <DropdownMenu
@@ -476,7 +481,10 @@ const Dashboard = () => {
                   <div className="neu-card-inset p-6">
                     <div className="text-2xl font-bold text-neu-900 mb-2">{currentPlan}</div>
                     <p className="text-neu-600 mb-4">
-                      {currentPlan === 'Free' ? 'Limited access to basic applications' : 'Full access to premium applications'}
+                      {currentPlan === 'Free'
+                        ? 'Limited access to basic applications'
+                        : 'Full access to premium applications'
+                      }
                     </p>
                     <button
                       onClick={() => setIsSubscriptionModalOpen(true)}
@@ -591,7 +599,11 @@ const EnhancedPurchasedAppCard = ({ app, onDownload, onUpdate }) => {
         {/* Tags */}
         <div className="flex flex-wrap gap-2">
           {app.tags.map(tag => (
-            <span key={tag} className="neu-card-inset px-3 py-1 text-xs text-neu-600 rounded-full">
+            <span 
+              key={tag} 
+              className="px-3 py-1 text-xs text-neu-600 rounded-full"
+              style={{ backgroundColor: '#f9f9ff', boxShadow: 'inset 2px 2px 4px #d1d1d8, inset -2px -2px 4px #ffffff' }}
+            >
               {tag}
             </span>
           ))}

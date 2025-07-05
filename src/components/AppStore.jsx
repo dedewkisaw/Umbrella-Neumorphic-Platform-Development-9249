@@ -160,15 +160,15 @@ const AppStore = () => {
 
   const filteredApps = apps.filter(app => {
     const matchesSearch = app.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         app.description.toLowerCase().includes(searchTerm.toLowerCase());
+      app.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || app.category === selectedCategory;
-    
+
     let matchesPrice = true;
     if (priceFilter === 'free') matchesPrice = app.price === 0;
     else if (priceFilter === 'under50') matchesPrice = app.price > 0 && app.price < 50;
     else if (priceFilter === 'under100') matchesPrice = app.price >= 50 && app.price < 100;
     else if (priceFilter === 'premium') matchesPrice = app.price >= 100;
-    
+
     return matchesSearch && matchesCategory && matchesPrice;
   });
 
@@ -290,17 +290,13 @@ const AppStore = () => {
               <div className="flex gap-2 ml-auto">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`neu-button p-3 hover:scale-105 transition-transform ${
-                    viewMode === 'grid' ? 'bg-blue-500 text-white' : ''
-                  }`}
+                  className={`neu-button p-3 hover:scale-105 transition-transform ${viewMode === 'grid' ? 'bg-blue-500 text-white' : ''}`}
                 >
                   <SafeIcon icon={FiGrid} className="w-5 h-5" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`neu-button p-3 hover:scale-105 transition-transform ${
-                    viewMode === 'list' ? 'bg-blue-500 text-white' : ''
-                  }`}
+                  className={`neu-button p-3 hover:scale-105 transition-transform ${viewMode === 'list' ? 'bg-blue-500 text-white' : ''}`}
                 >
                   <SafeIcon icon={FiList} className="w-5 h-5" />
                 </button>
@@ -522,12 +518,13 @@ const AppStore = () => {
                       {selectedCategory === 'all' ? 'Complete Collection' : categories.find(cat => cat.id === selectedCategory)?.name || 'Applications'}
                     </h3>
                     <p className="text-neu-600 text-lg">
-                      {selectedCategory === 'all' 
+                      {selectedCategory === 'all'
                         ? 'Explore our entire marketplace of professional applications across all categories'
                         : `Specialized ${categories.find(cat => cat.id === selectedCategory)?.name.toLowerCase()} solutions for your business needs`
                       }
                     </p>
                   </div>
+
                   {/* Category Stats */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {[
@@ -628,6 +625,7 @@ const EnhancedAppCard = ({ app, featured = false, viewMode = 'grid' }) => {
               <img src={app.preview} alt={app.name} className="w-full h-full object-cover" />
             </div>
           </div>
+
           {/* App Info */}
           <div className="flex-1 space-y-3">
             <div className="flex items-start justify-between">
@@ -650,14 +648,20 @@ const EnhancedAppCard = ({ app, featured = false, viewMode = 'grid' }) => {
                 <SafeIcon icon={FiHeart} className={`w-5 h-5 ${isLiked ? 'text-red-500' : 'text-neu-500'}`} />
               </button>
             </div>
+
             {/* Tags */}
             <div className="flex flex-wrap gap-2">
               {app.tags.slice(0, 4).map(tag => (
-                <span key={tag} className="neu-card-inset px-3 py-1 text-xs text-neu-600 rounded-full">
+                <span 
+                  key={tag} 
+                  className="px-3 py-1 text-xs text-neu-600 rounded-full"
+                  style={{ backgroundColor: '#f9f9ff', boxShadow: 'inset 2px 2px 4px #d1d1d8, inset -2px -2px 4px #ffffff' }}
+                >
                   {tag}
                 </span>
               ))}
             </div>
+
             {/* Stats and Actions */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-6 text-sm">
@@ -712,6 +716,7 @@ const EnhancedAppCard = ({ app, featured = false, viewMode = 'grid' }) => {
           <SafeIcon icon={FiStar} className="w-4 h-4" />
         </div>
       )}
+
       <div className="space-y-4">
         {/* Preview Image */}
         <div className="neu-card-inset p-2 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg group-hover:scale-105 transition-transform">
@@ -733,6 +738,7 @@ const EnhancedAppCard = ({ app, featured = false, viewMode = 'grid' }) => {
             )}
           </div>
         </div>
+
         {/* App Info */}
         <div className="space-y-3">
           <div className="flex items-start justify-between">
@@ -748,6 +754,7 @@ const EnhancedAppCard = ({ app, featured = false, viewMode = 'grid' }) => {
               <SafeIcon icon={FiHeart} className={`w-4 h-4 ${isLiked ? 'text-red-500' : 'text-neu-500'}`} />
             </button>
           </div>
+
           {/* Enhanced Features */}
           <div className="neu-card-inset p-3 space-y-2">
             <div className="text-xs text-neu-500 font-medium">Key Features:</div>
@@ -760,14 +767,20 @@ const EnhancedAppCard = ({ app, featured = false, viewMode = 'grid' }) => {
               ))}
             </div>
           </div>
+
           {/* Tags */}
           <div className="flex flex-wrap gap-1">
             {app.tags.slice(0, 3).map(tag => (
-              <span key={tag} className="neu-card-inset px-2 py-1 text-xs text-neu-600 rounded-full">
+              <span 
+                key={tag} 
+                className="px-2 py-1 text-xs text-neu-600 rounded-full"
+                style={{ backgroundColor: '#f9f9ff', boxShadow: 'inset 2px 2px 4px #d1d1d8, inset -2px -2px 4px #ffffff' }}
+              >
                 {tag}
               </span>
             ))}
           </div>
+
           {/* Stats */}
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-1">
@@ -783,6 +796,7 @@ const EnhancedAppCard = ({ app, featured = false, viewMode = 'grid' }) => {
               <span className="text-neu-600 text-xs">{app.lastUpdate}</span>
             </div>
           </div>
+
           {/* Price and Actions */}
           <div className="flex items-center justify-between pt-2">
             <div className="text-2xl font-bold text-neu-900">
