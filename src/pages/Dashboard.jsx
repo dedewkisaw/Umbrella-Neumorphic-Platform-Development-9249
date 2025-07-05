@@ -5,16 +5,15 @@ import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 import AppCard from '../components/AppCard';
 import SubscriptionModal from '../components/SubscriptionModal';
+import DropdownMenu from '../components/DropdownMenu';
 
-const {
-  FiArrowLeft, FiShoppingBag, FiBarChart, FiGlobe, FiDollarSign, FiShoppingCart,
-  FiEye, FiDownload, FiStar, FiTrendingUp, FiZap, FiShield, FiCheck, FiClock,
-  FiHeart, FiAward, FiGift
-} = FiIcons;
+const { FiArrowLeft, FiShoppingBag, FiBarChart, FiGlobe, FiDollarSign, FiShoppingCart, FiEye, FiDownload, FiStar, FiTrendingUp, FiZap, FiShield, FiCheck, FiClock, FiHeart, FiAward, FiGift } = FiIcons;
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('library');
+  const [sortBy, setSortBy] = useState('recent');
+  const [filterBy, setFilterBy] = useState('all');
   const [purchasedApps, setPurchasedApps] = useState([
     {
       id: 1,
@@ -96,6 +95,25 @@ const Dashboard = () => {
     { id: 'marketplace', label: 'Browse Apps', icon: FiShoppingBag }
   ];
 
+  // Dropdown options
+  const sortOptions = [
+    { value: 'recent', label: 'Recently Added' },
+    { value: 'name', label: 'Name (A-Z)' },
+    { value: 'rating', label: 'Highest Rated' },
+    { value: 'price', label: 'Price (Low to High)' },
+    { value: 'updated', label: 'Recently Updated' }
+  ];
+
+  const filterOptions = [
+    { value: 'all', label: 'All Apps' },
+    { value: 'active', label: 'Active' },
+    { value: 'updates', label: 'Needs Update' },
+    { value: 'ecommerce', label: 'E-commerce' },
+    { value: 'portfolio', label: 'Portfolio' },
+    { value: 'blog', label: 'Blog' },
+    { value: 'landing', label: 'Landing Page' }
+  ];
+
   const handleDownloadApp = (app) => {
     console.log('Downloading:', app.name);
   };
@@ -113,6 +131,25 @@ const Dashboard = () => {
   const totalApps = purchasedApps.length;
   const totalDownloads = purchasedApps.reduce((sum, app) => sum + app.downloads, 0);
   const avgRating = purchasedApps.length > 0 ? purchasedApps.reduce((sum, app) => sum + app.rating, 0) / purchasedApps.length : 0;
+
+  // Filter and sort apps
+  const filteredAndSortedApps = purchasedApps
+    .filter(app => {
+      if (filterBy === 'all') return true;
+      if (filterBy === 'active') return app.status === 'Active';
+      if (filterBy === 'updates') return app.status === 'Update Available';
+      return app.category === filterBy;
+    })
+    .sort((a, b) => {
+      switch (sortBy) {
+        case 'name': return a.name.localeCompare(b.name);
+        case 'rating': return b.rating - a.rating;
+        case 'price': return a.price - b.price;
+        case 'updated': return new Date(b.lastUpdate) - new Date(a.lastUpdate);
+        case 'recent':
+        default: return new Date(b.purchaseDate) - new Date(a.purchaseDate);
+      }
+    });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-6">
@@ -178,7 +215,9 @@ const Dashboard = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => setActiveTab(tab.id)}
-                className={`neu-button px-8 py-4 hover:scale-105 transition-transform flex-shrink-0 ${activeTab === tab.id ? 'bg-blue-500 text-white' : ''}`}
+                className={`neu-button px-8 py-4 hover:scale-105 transition-transform flex-shrink-0 ${
+                  activeTab === tab.id ? 'bg-blue-500 text-white' : ''
+                }`}
               >
                 <div className="flex items-center gap-3">
                   <SafeIcon icon={tab.icon} className="w-5 h-5" />
@@ -289,15 +328,32 @@ const Dashboard = () => {
                         <span className="text-green-700 font-medium text-sm">All Systems Operational</span>
                       </div>
                     </div>
-                    <select className="neu-input px-4 py-2 text-neu-700">
-                      <option>All Apps</option>
-                      <option>Recently Updated</option>
-                      <option>Needs Update</option>
-                    </select>
+                    {/* Beautiful Filter Dropdown */}
+                    <div className="min-w-[150px]">
+                      <DropdownMenu
+                        options={filterOptions}
+                        value={filterBy}
+                        onChange={setFilterBy}
+                        placeholder="Filter Apps"
+                        size="small"
+                        variant="success"
+                      />
+                    </div>
+                    {/* Beautiful Sort Dropdown */}
+                    <div className="min-w-[150px]">
+                      <DropdownMenu
+                        options={sortOptions}
+                        value={sortBy}
+                        onChange={setSortBy}
+                        placeholder="Sort Apps"
+                        size="small"
+                        variant="primary"
+                      />
+                    </div>
                   </div>
                 </div>
 
-                {purchasedApps.length === 0 ? (
+                {filteredAndSortedApps.length === 0 ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -324,7 +380,7 @@ const Dashboard = () => {
                   </motion.div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {purchasedApps.map((app, index) => (
+                    {filteredAndSortedApps.map((app, index) => (
                       <motion.div
                         key={app.id}
                         initial={{ opacity: 0, y: 20 }}
