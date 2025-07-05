@@ -10,6 +10,9 @@ import GDPR from './pages/GDPR';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Help from './pages/Help';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminRoute from './components/AdminRoute';
 import './App.css';
 
 function App() {
@@ -27,6 +30,18 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/help" element={<Help />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route 
+            path="/admin/dashboard" 
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            } 
+          />
+          
           {/* Placeholder routes for other footer links */}
           <Route path="/careers" element={<About />} />
           <Route path="/press" element={<About />} />
