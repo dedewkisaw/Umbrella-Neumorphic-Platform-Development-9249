@@ -1,35 +1,35 @@
 /* Neumorphic Design System */
 .neu-card {
   background: #f0f0f3;
-  border-radius: 20px;
-  box-shadow: 20px 20px 40px #bebebe, -20px -20px 40px #ffffff;
+  border-radius: 16px;
+  box-shadow: 12px 12px 24px #bebebe, -12px -12px 24px #ffffff;
 }
 
 .neu-card-inset {
   background: #f0f0f3;
-  border-radius: 20px;
-  box-shadow: inset 10px 10px 20px #bebebe, inset -10px -10px 20px #ffffff;
+  border-radius: 16px;
+  box-shadow: inset 8px 8px 16px #bebebe, inset -8px -8px 16px #ffffff;
 }
 
 .neu-button {
   background: #f0f0f3;
-  border-radius: 15px;
-  box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+  border-radius: 12px;
+  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
   transition: all 0.3s ease;
 }
 
 .neu-button:hover {
-  box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+  box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #ffffff;
 }
 
 .neu-button:active {
-  box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+  box-shadow: inset 3px 3px 6px #bebebe, inset -3px -3px 6px #ffffff;
 }
 
 .neu-input {
   background: #f0f0f3;
-  border-radius: 12px;
-  box-shadow: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff;
+  border-radius: 10px;
+  box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
   border: none;
   outline: none;
 }
@@ -39,11 +39,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  /* Fix for clipped descenders */
   display: inline-block;
   padding-bottom: 0.1em;
   line-height: 1.2;
-  /* Ensure proper spacing */
   margin-bottom: 0.1em;
 }
 
@@ -57,7 +55,29 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Additional fix for gradient text in headings */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .neu-card {
+    border-radius: 12px;
+    box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+  }
+  
+  .neu-card-inset {
+    border-radius: 12px;
+    box-shadow: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff;
+  }
+  
+  .neu-button {
+    border-radius: 10px;
+    box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+  }
+  
+  .neu-button:hover {
+    box-shadow: 2px 2px 4px #bebebe, -2px -2px 4px #ffffff;
+  }
+}
+
+/* Fix for gradient text in headings */
 h1 .gradient-text,
 h2 .gradient-text,
 h3 .gradient-text {
@@ -65,8 +85,14 @@ h3 .gradient-text {
   padding-bottom: 0.15em;
 }
 
-/* Ensure proper spacing for block gradient text */
 .gradient-text.block {
   display: block;
   margin-top: 0.2em;
+}
+
+/* Ensure proper text sizing on mobile */
+@media (max-width: 640px) {
+  .gradient-text {
+    font-size: 0.95em;
+  }
 }
