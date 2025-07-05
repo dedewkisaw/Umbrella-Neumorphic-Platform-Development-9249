@@ -1,20 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiCheck, FiStar, FiZap, FiShield, FiTrendingUp, FiDollarSign, FiGift, FiAward, FiUsers, FiGlobe, FiHeart, FiTarget } = FiIcons;
+const { FiCheck, FiStar, FiZap, FiShield, FiTrendingUp, FiDollarSign, FiGift, FiAward, FiUsers, FiGlobe, FiHeart, FiTarget, FiCreditCard } = FiIcons;
 
 const Pricing = () => {
+  const navigate = useNavigate();
+
   const plans = [
     {
       name: "Individual Purchase",
-      price: "$29-199",
+      price: "€249",
       period: "per app",
       description: "Buy specific apps you need",
       features: [
         "Own the app forever",
-        "Lifetime updates included",
+        "Lifetime updates included", 
         "Commercial use license",
         "Developer support",
         "Source code access"
@@ -24,19 +27,22 @@ const Pricing = () => {
       popular: false,
       color: "from-blue-500 to-purple-500",
       badge: "Starter",
-      savings: null
+      savings: null,
+      icon: FiGlobe,
+      action: "browse"
     },
     {
       name: "Pro Access",
-      price: "$49",
+      price: "€39",
       period: "month",
-      description: "Access to premium apps",
+      description: "For active developers",
       features: [
-        "Access 100+ premium apps",
-        "New apps added monthly",
-        "Priority support",
-        "Advanced features unlocked",
-        "Commercial use included",
+        "Monthly app credits (€50 value)",
+        "Priority customer support",
+        "Early access to new apps",
+        "Developer resources",
+        "Advanced app analytics",
+        "Custom app requests",
         "Team collaboration tools"
       ],
       highlight: "Most popular choice",
@@ -44,30 +50,80 @@ const Pricing = () => {
       popular: true,
       color: "from-green-500 to-blue-500",
       badge: "Most Popular",
-      savings: "Save 60%"
+      savings: "Save 60%",
+      icon: FiStar,
+      action: "subscribe",
+      planType: "Pro"
     },
     {
-      name: "Unlimited Access",
-      price: "$99",
-      period: "month",
-      description: "Full marketplace access",
+      name: "Business Access",
+      price: "€99",
+      period: "month", 
+      description: "For growing businesses",
       features: [
-        "Access to ALL applications",
-        "Exclusive early access",
-        "White-label options",
-        "API access included",
-        "Custom integrations",
-        "Dedicated account manager",
-        "Enterprise support"
+        "Monthly app credits (€150 value)",
+        "Team collaboration tools",
+        "White-label licensing",
+        "Custom domain integration",
+        "Advanced analytics dashboard",
+        "API access",
+        "Dedicated account manager"
       ],
-      highlight: "Best value for businesses",
-      buttonText: "Go Unlimited",
+      highlight: "Best value for teams",
+      buttonText: "Go Business",
       popular: false,
       color: "from-purple-500 to-pink-500",
+      badge: "Business",
+      savings: "Save 70%",
+      icon: FiUsers,
+      action: "subscribe",
+      planType: "Business"
+    },
+    {
+      name: "Enterprise Access",
+      price: "€249",
+      period: "month",
+      description: "For large organizations", 
+      features: [
+        "Unlimited app access",
+        "Custom app development",
+        "Enterprise-grade security",
+        "SLA guarantees",
+        "On-premise deployment",
+        "Custom integrations",
+        "24/7 phone support",
+        "Dedicated dev team"
+      ],
+      highlight: "Complete enterprise solution",
+      buttonText: "Contact Sales",
+      popular: false,
+      color: "from-indigo-500 to-purple-500",
       badge: "Enterprise",
-      savings: "Save 80%"
+      savings: "Save 80%",
+      icon: FiShield,
+      action: "contact",
+      planType: "Enterprise"
     }
   ];
+
+  const handlePlanAction = (plan) => {
+    switch (plan.action) {
+      case 'browse':
+        // Navigate to marketplace
+        navigate('/marketplace');
+        break;
+      case 'subscribe':
+        // Navigate to dashboard with subscription modal
+        navigate('/dashboard', { state: { showSubscription: true, selectedPlan: plan.planType } });
+        break;
+      case 'contact':
+        // Navigate to contact page or open contact modal
+        navigate('/contact');
+        break;
+      default:
+        console.log('Unknown action:', plan.action);
+    }
+  };
 
   return (
     <section id="pricing" className="py-12 lg:py-16 xl:py-24 bg-gradient-to-br from-neu-200 to-neu-100">
@@ -96,7 +152,7 @@ const Pricing = () => {
         </motion.div>
 
         {/* Enhanced Pricing Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12 lg:mb-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-12 lg:mb-20">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
@@ -130,7 +186,7 @@ const Pricing = () => {
                 {/* Enhanced Header */}
                 <div className="text-center space-y-3 lg:space-y-4">
                   <div className={`neu-button p-3 lg:p-4 inline-flex mx-auto bg-gradient-to-r ${plan.color} text-white shadow-xl`}>
-                    <SafeIcon icon={plan.popular ? FiStar : FiGlobe} className="w-6 h-6 lg:w-8 lg:h-8" />
+                    <SafeIcon icon={plan.icon} className="w-6 h-6 lg:w-8 lg:h-8" />
                   </div>
                   <h3 className="text-lg lg:text-xl xl:text-2xl font-bold text-neu-900">{plan.name}</h3>
                   <p className="text-neu-600 text-sm lg:text-base xl:text-lg">{plan.description}</p>
@@ -147,8 +203,12 @@ const Pricing = () => {
                     <span className="text-3xl lg:text-4xl xl:text-5xl font-bold text-neu-900">{plan.price}</span>
                     <span className="text-neu-600 text-sm lg:text-base xl:text-lg">/{plan.period}</span>
                   </div>
-                  <div className={`neu-card-inset p-3 lg:p-4 bg-gradient-to-r ${plan.popular ? 'from-green-50 to-blue-50' : 'from-blue-50 to-purple-50'}`}>
-                    <div className={`font-bold text-sm lg:text-base xl:text-lg ${plan.popular ? 'text-green-700' : 'text-blue-700'}`}>
+                  <div className={`neu-card-inset p-3 lg:p-4 bg-gradient-to-r ${
+                    plan.popular ? 'from-green-50 to-blue-50' : 'from-blue-50 to-purple-50'
+                  }`}>
+                    <div className={`font-bold text-sm lg:text-base xl:text-lg ${
+                      plan.popular ? 'text-green-700' : 'text-blue-700'
+                    }`}>
                       {plan.highlight}
                     </div>
                   </div>
@@ -176,13 +236,20 @@ const Pricing = () => {
                   </ul>
                 </div>
 
-                {/* Enhanced CTA Button */}
-                <button className={`w-full neu-button py-3 lg:py-4 hover:scale-105 transition-transform shadow-xl ${
-                  plan.popular ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white' : 'bg-gradient-to-r from-blue-100 to-purple-100'
-                }`}>
+                {/* Enhanced CTA Button with Functionality */}
+                <button 
+                  onClick={() => handlePlanAction(plan)}
+                  className={`w-full neu-button py-3 lg:py-4 hover:scale-105 transition-transform shadow-xl ${
+                    plan.popular 
+                      ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white' 
+                      : 'bg-gradient-to-r from-blue-100 to-purple-100'
+                  }`}
+                >
                   <div className="flex items-center justify-center gap-2 lg:gap-3">
-                    <SafeIcon icon={plan.popular ? FiZap : FiTarget} className="w-4 h-4 lg:w-5 lg:h-5" />
-                    <span className={`font-bold text-sm lg:text-base xl:text-lg ${plan.popular ? 'text-white' : 'text-neu-700'}`}>
+                    <SafeIcon icon={plan.popular ? FiZap : plan.name.includes('Enterprise') ? FiShield : FiTarget} className="w-4 h-4 lg:w-5 lg:h-5" />
+                    <span className={`font-bold text-sm lg:text-base xl:text-lg ${
+                      plan.popular ? 'text-white' : 'text-neu-700'
+                    }`}>
                       {plan.buttonText}
                     </span>
                   </div>
@@ -214,11 +281,30 @@ const Pricing = () => {
               Compare our prices to custom development costs and see the incredible value you get with professional, tested applications.
             </p>
           </div>
+
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {[
-              { icon: FiZap, title: "Instant Value", desc: "Get professional applications immediately instead of waiting months for development.", color: "from-blue-500 to-purple-500", stat: "Launch in minutes" },
-              { icon: FiShield, title: "Proven Quality", desc: "Every app is tested, secure, and maintained by professional developers.", color: "from-green-500 to-blue-500", stat: "99.9% uptime" },
-              { icon: FiTrendingUp, title: "Huge Savings", desc: "Save 90%+ compared to custom development while getting better quality.", color: "from-purple-500 to-pink-500", stat: "90% cost savings" }
+              {
+                icon: FiZap,
+                title: "Instant Value",
+                desc: "Get professional applications immediately instead of waiting months for development.",
+                color: "from-blue-500 to-purple-500",
+                stat: "Launch in minutes"
+              },
+              {
+                icon: FiShield,
+                title: "Proven Quality", 
+                desc: "Every app is tested, secure, and maintained by professional developers.",
+                color: "from-green-500 to-blue-500",
+                stat: "99.9% uptime"
+              },
+              {
+                icon: FiTrendingUp,
+                title: "Huge Savings",
+                desc: "Save 90%+ compared to custom development while getting better quality.",
+                color: "from-purple-500 to-pink-500", 
+                stat: "90% cost savings"
+              }
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -259,14 +345,33 @@ const Pricing = () => {
               Frequently Asked Questions
             </h3>
           </div>
+
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {[
-              { q: "Do I own the apps I purchase?", a: "Yes! Individual purchases give you lifetime ownership with all future updates included." },
-              { q: "Can I use apps commercially?", a: "All plans include commercial use licenses. Use purchased apps in your business without restrictions." },
-              { q: "What about customizations?", a: "Source code is included with purchases, and developers offer customization services." },
-              { q: "How do subscriptions work?", a: "Subscriptions give you access to apps while active. Cancel anytime, no long-term commitments." },
-              { q: "Is support included?", a: "Yes! All plans include developer support for installation, setup, and basic customizations." },
-              { q: "Are there any hidden fees?", a: "No hidden fees. The price you see is what you pay, with all features and updates included." }
+              {
+                q: "Do I own the apps I purchase?",
+                a: "Yes! Individual purchases give you lifetime ownership with all future updates included."
+              },
+              {
+                q: "Can I use apps commercially?",
+                a: "All plans include commercial use licenses. Use purchased apps in your business without restrictions."
+              },
+              {
+                q: "What about customizations?",
+                a: "Source code is included with purchases, and developers offer customization services."
+              },
+              {
+                q: "How do subscriptions work?",
+                a: "Subscriptions give you access to apps while active. Cancel anytime, no long-term commitments."
+              },
+              {
+                q: "Is support included?",
+                a: "Yes! All plans include developer support for installation, setup, and basic customizations."
+              },
+              {
+                q: "Are there any hidden fees?",
+                a: "No hidden fees. The price you see is what you pay, with all features and updates included."
+              }
             ].map((faq, index) => (
               <motion.div
                 key={index}

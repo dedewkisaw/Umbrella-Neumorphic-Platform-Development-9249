@@ -18,20 +18,26 @@ const Footer = () => {
     }
   };
 
-  // Navigation handlers with proper routing
+  // Navigation handlers with proper routing and scroll to top
   const handleNavigation = (type, target) => {
     switch (type) {
       case 'scroll':
         // If we're not on the home page, navigate to home first then scroll
         if (window.location.pathname !== '/' && window.location.hash !== '#/') {
           navigate('/');
-          setTimeout(() => scrollToSection(target), 100);
+          setTimeout(() => {
+            scrollToSection(target);
+          }, 100);
         } else {
           scrollToSection(target);
         }
         break;
       case 'navigate':
         navigate(target);
+        // Scroll to top when navigating
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
         break;
       case 'external':
         window.open(target, '_blank', 'noopener,noreferrer');

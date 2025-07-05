@@ -11,87 +11,87 @@ const SubscriptionModal = ({ isOpen, onClose, currentPlan = 'Free' }) => {
   const plans = [
     {
       name: 'Free',
-      price: '$0',
+      price: '€0',
       period: 'forever',
       description: 'Perfect for getting started',
       features: [
-        '1 web application',
-        '1GB storage',
-        'Basic subdomain',
-        'SSL certificate',
-        'Community support'
+        'Browse app marketplace',
+        'Purchase individual apps',
+        'Basic customer support',
+        'Community access',
+        'App documentation'
       ],
       limits: {
-        apps: 1,
-        storage: '1GB',
-        bandwidth: '10GB'
+        apps: 'Individual purchase',
+        marketplace: 'Full access',
+        support: 'Community'
       }
     },
     {
       name: 'Pro',
-      price: '$19',
+      price: '€39',
       period: 'month',
-      description: 'For serious developers',
+      description: 'For active developers',
       features: [
-        '5 web applications',
-        '10GB storage',
-        'Custom domains',
-        'SSL certificates',
-        'Advanced analytics',
-        'Priority support',
-        'Custom 404 pages'
+        'Everything in Free',
+        'Monthly app credits (€50 value)',
+        'Priority customer support',
+        'Early access to new apps',
+        'Developer resources',
+        'Advanced app analytics',
+        'Custom app requests'
       ],
       limits: {
-        apps: 5,
-        storage: '10GB',
-        bandwidth: '100GB'
+        apps: '€50 monthly credits',
+        marketplace: 'Full access + early access',
+        support: 'Priority email'
       },
       popular: true
     },
     {
       name: 'Business',
-      price: '$49',
+      price: '€99',
       period: 'month',
       description: 'For growing businesses',
       features: [
-        '20 web applications',
-        '50GB storage',
-        'Custom domains',
-        'SSL certificates',
-        'Advanced analytics',
-        'Priority support',
-        'White-label options',
-        'Team collaboration',
-        'API access'
+        'Everything in Pro',
+        'Monthly app credits (€150 value)',
+        'Team collaboration tools',
+        'White-label licensing',
+        'Custom domain integration',
+        'Advanced analytics dashboard',
+        'API access',
+        'Dedicated account manager',
+        'Team training sessions'
       ],
       limits: {
-        apps: 20,
-        storage: '50GB',
-        bandwidth: '500GB'
+        apps: '€150 monthly credits',
+        marketplace: 'Full access + exclusives',
+        support: 'Phone & email'
       }
     },
     {
       name: 'Enterprise',
-      price: '$199',
+      price: '€249',
       period: 'month',
       description: 'For large organizations',
       features: [
-        'Unlimited applications',
-        '500GB storage',
-        'Custom domains',
-        'SSL certificates',
-        'Advanced analytics',
+        'Everything in Business',
+        'Unlimited app access',
+        'Custom app development',
+        'Enterprise-grade security',
+        'SLA guarantees',
+        'On-premise deployment',
+        'Custom integrations',
         '24/7 phone support',
-        'White-label options',
-        'Team collaboration',
-        'API access',
-        'SLA guarantee',
-        'Custom integrations'
+        'Dedicated dev team',
+        'Training & onboarding',
+        'Custom licensing terms'
       ],
       limits: {
-        apps: 'Unlimited',
-        storage: '500GB',
-        bandwidth: 'Unlimited'
+        apps: 'Unlimited access',
+        marketplace: 'Full access + custom apps',
+        support: '24/7 dedicated team'
       }
     }
   ];
@@ -158,7 +158,7 @@ const SubscriptionModal = ({ isOpen, onClose, currentPlan = 'Free' }) => {
                   <div className="text-center">
                     <div className="flex items-baseline justify-center gap-1">
                       <span className="text-3xl font-bold text-neu-900">{plan.price}</span>
-                      {plan.price !== '$0' && (
+                      {plan.price !== '€0' && (
                         <span className="text-neu-600">/{plan.period}</span>
                       )}
                     </div>
@@ -166,16 +166,16 @@ const SubscriptionModal = ({ isOpen, onClose, currentPlan = 'Free' }) => {
 
                   <div className="neu-card-inset p-3 space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-neu-600">Apps</span>
+                      <span className="text-neu-600">App Access</span>
                       <span className="text-neu-800 font-medium">{plan.limits.apps}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-neu-600">Storage</span>
-                      <span className="text-neu-800 font-medium">{plan.limits.storage}</span>
+                      <span className="text-neu-600">Marketplace</span>
+                      <span className="text-neu-800 font-medium">{plan.limits.marketplace}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-neu-600">Bandwidth</span>
-                      <span className="text-neu-800 font-medium">{plan.limits.bandwidth}</span>
+                      <span className="text-neu-600">Support</span>
+                      <span className="text-neu-800 font-medium">{plan.limits.support}</span>
                     </div>
                   </div>
 
@@ -202,7 +202,7 @@ const SubscriptionModal = ({ isOpen, onClose, currentPlan = 'Free' }) => {
                         <>
                           <SafeIcon icon={FiCreditCard} className="w-4 h-4" />
                           <span className={`font-medium ${plan.popular ? 'text-white' : 'text-neu-700'}`}>
-                            {plan.price === '$0' ? 'Start Free' : 'Upgrade'}
+                            {plan.price === '€0' ? 'Start Free' : 'Upgrade'}
                           </span>
                         </>
                       )}
@@ -215,8 +215,7 @@ const SubscriptionModal = ({ isOpen, onClose, currentPlan = 'Free' }) => {
 
           <div className="mt-8 text-center">
             <p className="text-neu-600 text-sm">
-              All plans include SSL certificates, 99.9% uptime SLA, and global CDN. 
-              Cancel anytime with one click.
+              All plans include secure payments, lifetime app ownership, and premium support. Cancel anytime with one click.
             </p>
           </div>
         </motion.div>

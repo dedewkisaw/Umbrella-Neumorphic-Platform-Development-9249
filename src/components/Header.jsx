@@ -26,11 +26,18 @@ const Header = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+    setIsMenuOpen(false);
+  };
+
+  // Handle navigation with scroll to top
+  const handleNavigation = (path) => {
+    navigate(path);
+    // Scroll to top when navigating
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
     setIsMenuOpen(false);
   };
 
@@ -53,7 +60,7 @@ const Header = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
             className="flex items-center gap-2 lg:gap-3 cursor-pointer"
-            onClick={() => navigate('/')}
+            onClick={() => handleNavigation('/')}
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -74,7 +81,7 @@ const Header = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              onClick={() => navigate('/marketplace')}
+              onClick={() => handleNavigation('/marketplace')}
               className="neu-button px-4 py-2 lg:px-5 lg:py-3 hover:scale-105 transition-transform group bg-gradient-to-r from-blue-100 to-purple-100"
             >
               <div className="flex items-center gap-2">
@@ -113,7 +120,7 @@ const Header = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              onClick={() => navigate('/dashboard')}
+              onClick={() => handleNavigation('/dashboard')}
               className="neu-button px-4 py-2 lg:px-6 lg:py-3 hover:scale-105 transition-transform bg-gradient-to-r from-green-500 to-blue-500 text-white shadow-lg"
             >
               <div className="flex items-center gap-2">
@@ -149,10 +156,7 @@ const Header = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
-                onClick={() => {
-                  navigate('/marketplace');
-                  setIsMenuOpen(false);
-                }}
+                onClick={() => handleNavigation('/marketplace')}
                 className="neu-button p-3 text-left hover:scale-105 transition-transform group"
               >
                 <div className="flex items-center gap-3">
@@ -191,10 +195,7 @@ const Header = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
-                onClick={() => {
-                  navigate('/dashboard');
-                  setIsMenuOpen(false);
-                }}
+                onClick={() => handleNavigation('/dashboard')}
                 className="neu-button p-3 text-left bg-gradient-to-r from-green-500 to-blue-500 text-white hover:scale-105 transition-transform"
               >
                 <div className="flex items-center gap-3">
