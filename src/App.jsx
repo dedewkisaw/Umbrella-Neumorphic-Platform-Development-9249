@@ -12,6 +12,7 @@ import Contact from './pages/Contact';
 import Help from './pages/Help';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminMessages from './pages/AdminMessages';
 import AdminRoute from './components/AdminRoute';
 import ChatWidget from './components/ChatWidget';
 import './App.css';
@@ -37,6 +38,11 @@ function App() {
           <Route path="/admin/dashboard" element={
             <AdminRoute>
               <AdminDashboard />
+            </AdminRoute>
+          } />
+          <Route path="/admin/messages" element={
+            <AdminRoute>
+              <AdminMessages />
             </AdminRoute>
           } />
           

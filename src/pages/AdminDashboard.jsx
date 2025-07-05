@@ -6,7 +6,6 @@ import SafeIcon from '../common/SafeIcon';
 import DropdownMenu from '../components/DropdownMenu';
 import AdminAnalytics from '../components/AdminAnalytics';
 import AdminUserManagement from '../components/AdminUserManagement';
-import AdminMessages from '../components/AdminMessages';
 import useDataStore from '../stores/DataStore';
 import { useRealtimeData } from '../hooks/useRealtimeData';
 
@@ -293,7 +292,13 @@ const AdminDashboard = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => {
+                  if (tab.id === 'messages') {
+                    navigate('/admin/messages');
+                  } else {
+                    setActiveTab(tab.id);
+                  }
+                }}
                 className={`neu-button px-6 py-3 hover:scale-105 transition-transform flex-shrink-0 ${
                   activeTab === tab.id ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300'
                 }`}
@@ -488,7 +493,6 @@ const AdminDashboard = () => {
 
           {activeTab === 'analytics' && <AdminAnalytics />}
           {activeTab === 'users' && <AdminUserManagement />}
-          {activeTab === 'messages' && <AdminMessages />}
 
           {activeTab === 'sales' && (
             <motion.div
