@@ -3,7 +3,10 @@ import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiZap, FiShield, FiTrendingUp, FiHeart, FiGlobe, FiCpu, FiX, FiCheck, FiStar, FiTarget, FiAward, FiDollarSign, FiClock, FiUsers } = FiIcons;
+const {
+  FiZap, FiShield, FiTrendingUp, FiHeart, FiGlobe, FiCpu, FiX, FiCheck,
+  FiStar, FiTarget, FiAward, FiDollarSign, FiClock, FiUsers
+} = FiIcons;
 
 const USP = () => {
   const benefits = [
@@ -52,29 +55,27 @@ const USP = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-br from-blue-50 to-purple-50">
+    <section className="py-16 lg:py-24 xl:py-32 bg-gradient-to-br from-blue-50 to-purple-50">
       <div className="max-w-7xl mx-auto px-6">
         {/* Enhanced Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16 lg:mb-24"
         >
           <div className="neu-button inline-flex items-center gap-3 px-8 py-4 mb-8 bg-gradient-to-r from-blue-100 to-purple-100">
             <SafeIcon icon={FiZap} className="w-6 h-6 text-blue-600" />
             <span className="text-neu-700 font-bold text-lg">The Umbrella Advantage</span>
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
           </div>
-          
-          <h2 className="text-4xl lg:text-6xl font-bold text-neu-900 mb-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-neu-900 mb-8">
             Why Choose Ready-Made
             <span className="gradient-text block" style={{ lineHeight: '1.2', paddingBottom: '0.1em' }}>
               Applications
             </span>
           </h2>
-          
-          <p className="text-xl lg:text-2xl text-neu-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl lg:text-2xl text-neu-600 max-w-4xl mx-auto leading-relaxed">
             Get professional, feature-complete web applications instantly. Skip months of development and thousands in costs with our curated marketplace of premium solutions.
           </p>
         </motion.div>
@@ -134,14 +135,12 @@ const USP = () => {
               <span className="text-neu-700 font-bold text-lg">The Smart Choice</span>
               <SafeIcon icon={FiAward} className="w-6 h-6 text-green-600" />
             </div>
-            
-            <h3 className="text-3xl lg:text-5xl font-bold text-neu-900 mb-6">
+            <h3 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-neu-900 mb-6">
               Custom Development vs
               <span className="gradient-text block" style={{ lineHeight: '1.2', paddingBottom: '0.1em' }}>
                 Umbrella Marketplace
               </span>
             </h3>
-            
             <p className="text-xl text-neu-600 max-w-3xl mx-auto leading-relaxed">
               See the dramatic difference in time, cost, and quality between traditional development and our marketplace
             </p>
@@ -266,16 +265,12 @@ const USP = () => {
                   <SafeIcon icon={FiAward} className="w-6 h-6" />
                   <span className="font-bold text-lg">The Choice is Clear</span>
                 </div>
-                
                 <h4 className="text-3xl lg:text-4xl font-bold text-neu-900 mb-6">
                   Smart Investment Decision
                 </h4>
-                
                 <p className="text-xl text-neu-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-                  Save <span className="font-bold text-green-600 text-2xl">90%+ in costs</span> and 
-                  <span className="font-bold text-blue-600 text-2xl"> 6+ months of time</span> with our premium marketplace
+                  Save <span className="font-bold text-green-600 text-2xl">90%+ in costs</span> and <span className="font-bold text-blue-600 text-2xl"> 6+ months of time</span> with our premium marketplace
                 </p>
-                
                 <div className="grid md:grid-cols-3 gap-6 mb-8">
                   {[
                     { label: "Cost Savings", value: "90%+", color: "text-green-600" },
@@ -288,7 +283,6 @@ const USP = () => {
                     </div>
                   ))}
                 </div>
-                
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
                   <button className="neu-button px-10 py-5 bg-gradient-to-r from-green-500 to-blue-500 text-white hover:scale-105 transition-transform shadow-2xl">
                     <div className="flex items-center gap-3">

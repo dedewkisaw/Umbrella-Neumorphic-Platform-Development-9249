@@ -3,7 +3,10 @@ import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiAlertTriangle, FiClock, FiDollarSign, FiSettings, FiTrendingDown, FiX, FiZap, FiTarget, FiShield, FiUsers, FiHeart } = FiIcons;
+const {
+  FiAlertTriangle, FiClock, FiDollarSign, FiSettings, FiTrendingDown, FiX,
+  FiZap, FiTarget, FiShield, FiUsers, FiHeart
+} = FiIcons;
 
 const PainPoints = () => {
   const painPoints = [
@@ -58,29 +61,27 @@ const PainPoints = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-br from-neu-100 to-neu-200">
+    <section className="py-16 lg:py-24 xl:py-32 bg-gradient-to-br from-neu-100 to-neu-200">
       <div className="max-w-7xl mx-auto px-6">
         {/* Enhanced Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16 lg:mb-24"
         >
           <div className="neu-button inline-flex items-center gap-3 px-8 py-4 mb-8 bg-gradient-to-r from-red-100 to-orange-100">
             <SafeIcon icon={FiAlertTriangle} className="w-6 h-6 text-red-600" />
             <span className="text-neu-700 font-bold text-lg">The Problem</span>
             <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
           </div>
-          
-          <h2 className="text-4xl lg:text-6xl font-bold text-neu-900 mb-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-neu-900 mb-8">
             Stop Wasting Time on
             <span className="gradient-text block" style={{ lineHeight: '1.2', paddingBottom: '0.1em' }}>
               Custom Development
             </span>
           </h2>
-          
-          <p className="text-xl lg:text-2xl text-neu-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl lg:text-2xl text-neu-600 max-w-4xl mx-auto leading-relaxed">
             Why reinvent the wheel? Businesses waste months and thousands of dollars building common web applications that already exist as proven, professional solutions.
           </p>
         </motion.div>
@@ -111,7 +112,6 @@ const PainPoints = () => {
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold text-neu-900">{point.title}</h3>
                   <p className="text-neu-600 leading-relaxed">{point.description}</p>
-                  
                   <div className="text-sm text-neu-500 font-medium">{point.stats}</div>
                 </div>
 
@@ -139,18 +139,15 @@ const PainPoints = () => {
               <SafeIcon icon={FiZap} className="w-6 h-6" />
               <span className="font-bold text-lg">The Solution</span>
             </div>
-            
             <h3 className="text-3xl lg:text-4xl font-bold text-neu-900 mb-6">
               There's a Better Way
               <span className="gradient-text block" style={{ lineHeight: '1.2', paddingBottom: '0.1em' }}>
                 Ready-Made Excellence
               </span>
             </h3>
-            
             <p className="text-xl text-neu-600 leading-relaxed mb-8">
               Skip the development headaches. Get professional, ready-to-use web applications that are tested, secure, and feature-complete from day one.
             </p>
-            
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               {[
                 { icon: FiTarget, label: "Instant Access", value: "Minutes not months", color: "text-green-600" },
@@ -177,7 +174,6 @@ const PainPoints = () => {
                 </motion.div>
               ))}
             </div>
-            
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button className="neu-button px-10 py-5 bg-gradient-to-r from-green-500 to-blue-500 text-white hover:scale-105 transition-transform shadow-2xl">
                 <div className="flex items-center gap-3">

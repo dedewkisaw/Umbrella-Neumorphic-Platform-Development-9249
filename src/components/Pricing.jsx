@@ -3,7 +3,10 @@ import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiCheck, FiStar, FiZap, FiShield, FiTrendingUp, FiDollarSign, FiGift, FiAward, FiUsers, FiGlobe, FiHeart, FiTarget } = FiIcons;
+const {
+  FiCheck, FiStar, FiZap, FiShield, FiTrendingUp, FiDollarSign, FiGift,
+  FiAward, FiUsers, FiGlobe, FiHeart, FiTarget
+} = FiIcons;
 
 const Pricing = () => {
   const plans = [
@@ -70,29 +73,27 @@ const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="py-20 lg:py-32 bg-gradient-to-br from-neu-200 to-neu-100">
+    <section id="pricing" className="py-16 lg:py-24 xl:py-32 bg-gradient-to-br from-neu-200 to-neu-100">
       <div className="max-w-7xl mx-auto px-6">
         {/* Enhanced Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16 lg:mb-24"
         >
           <div className="neu-button inline-flex items-center gap-3 px-8 py-4 mb-8 bg-gradient-to-r from-green-100 to-blue-100">
             <SafeIcon icon={FiDollarSign} className="w-6 h-6 text-green-600" />
             <span className="text-neu-700 font-bold text-lg">Transparent Pricing</span>
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
           </div>
-          
-          <h2 className="text-4xl lg:text-6xl font-bold text-neu-900 mb-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-neu-900 mb-8">
             Simple, Transparent
             <span className="gradient-text block" style={{ lineHeight: '1.2', paddingBottom: '0.1em' }}>
               Pricing Plans
             </span>
           </h2>
-          
-          <p className="text-xl lg:text-2xl text-neu-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl lg:text-2xl text-neu-600 max-w-4xl mx-auto leading-relaxed">
             Choose the option that works best for you. Buy individual apps or get unlimited access to our entire premium library.
           </p>
         </motion.div>
@@ -134,10 +135,8 @@ const Pricing = () => {
                   <div className={`neu-button p-4 inline-flex mx-auto bg-gradient-to-r ${plan.color} text-white shadow-xl`}>
                     <SafeIcon icon={plan.popular ? FiStar : FiGlobe} className="w-8 h-8" />
                   </div>
-                  
                   <h3 className="text-2xl font-bold text-neu-900">{plan.name}</h3>
                   <p className="text-neu-600 text-lg">{plan.description}</p>
-                  
                   {plan.savings && (
                     <div className="neu-button px-4 py-2 bg-gradient-to-r from-green-100 to-blue-100">
                       <span className="text-green-700 font-bold text-sm">{plan.savings}</span>
@@ -151,7 +150,6 @@ const Pricing = () => {
                     <span className="text-5xl font-bold text-neu-900">{plan.price}</span>
                     <span className="text-neu-600 text-lg">/{plan.period}</span>
                   </div>
-                  
                   <div className={`neu-card-inset p-4 bg-gradient-to-r ${
                     plan.popular ? 'from-green-50 to-blue-50' : 'from-blue-50 to-purple-50'
                   }`}>
@@ -187,9 +185,7 @@ const Pricing = () => {
 
                 {/* Enhanced CTA Button */}
                 <button className={`w-full neu-button py-4 hover:scale-105 transition-transform shadow-xl ${
-                  plan.popular 
-                    ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white' 
-                    : 'bg-gradient-to-r from-blue-100 to-purple-100'
+                  plan.popular ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white' : 'bg-gradient-to-r from-blue-100 to-purple-100'
                 }`}>
                   <div className="flex items-center justify-center gap-3">
                     <SafeIcon icon={plan.popular ? FiZap : FiTarget} className="w-5 h-5" />
@@ -217,14 +213,12 @@ const Pricing = () => {
               <SafeIcon icon={FiGift} className="w-5 h-5 text-purple-600" />
               <span className="text-neu-700 font-bold">Amazing Value</span>
             </div>
-            
             <h3 className="text-3xl lg:text-4xl font-bold text-neu-900 mb-6">
               Why Our Pricing Makes Sense
               <span className="gradient-text block" style={{ lineHeight: '1.2', paddingBottom: '0.1em' }}>
                 Incredible ROI
               </span>
             </h3>
-            
             <p className="text-lg text-neu-600 max-w-3xl mx-auto">
               Compare our prices to custom development costs and see the incredible value you get with professional, tested applications.
             </p>
@@ -232,23 +226,23 @@ const Pricing = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { 
-                icon: FiZap, 
-                title: "Instant Value", 
+              {
+                icon: FiZap,
+                title: "Instant Value",
                 desc: "Get professional applications immediately instead of waiting months for development.",
                 color: "from-blue-500 to-purple-500",
                 stat: "Launch in minutes"
               },
-              { 
-                icon: FiShield, 
-                title: "Proven Quality", 
+              {
+                icon: FiShield,
+                title: "Proven Quality",
                 desc: "Every app is tested, secure, and maintained by professional developers.",
                 color: "from-green-500 to-blue-500",
                 stat: "99.9% uptime"
               },
-              { 
-                icon: FiTrendingUp, 
-                title: "Huge Savings", 
+              {
+                icon: FiTrendingUp,
+                title: "Huge Savings",
                 desc: "Save 90%+ compared to custom development while getting better quality.",
                 color: "from-purple-500 to-pink-500",
                 stat: "90% cost savings"
@@ -265,11 +259,9 @@ const Pricing = () => {
                 <div className={`neu-button p-4 inline-flex mx-auto bg-gradient-to-r ${item.color} text-white shadow-xl`}>
                   <SafeIcon icon={item.icon} className="w-8 h-8" />
                 </div>
-                
                 <div className="space-y-4">
                   <h4 className="font-bold text-neu-900 text-xl">{item.title}</h4>
                   <p className="text-neu-600 leading-relaxed">{item.desc}</p>
-                  
                   <div className="neu-card-inset p-3 bg-gradient-to-r from-green-100 to-blue-100">
                     <div className="font-bold text-green-700">{item.stat}</div>
                   </div>
@@ -291,7 +283,6 @@ const Pricing = () => {
               <SafeIcon icon={FiUsers} className="w-5 h-5 text-blue-600" />
               <span className="text-neu-700 font-bold">Got Questions?</span>
             </div>
-            
             <h3 className="text-3xl lg:text-4xl font-bold text-neu-900 mb-6">
               Frequently Asked Questions
             </h3>
@@ -339,7 +330,6 @@ const Pricing = () => {
                     </div>
                     <h4 className="font-bold text-neu-900 text-lg">{faq.q}</h4>
                   </div>
-                  
                   <div className="flex items-start gap-3">
                     <div className="neu-button p-2 bg-gradient-to-r from-green-500 to-blue-500 text-white">
                       <span className="font-bold text-sm">A</span>

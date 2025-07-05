@@ -55,6 +55,18 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Enhanced floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-5px) rotate(1deg); }
+  50% { transform: translateY(-10px) rotate(0deg); }
+  75% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .neu-card {
@@ -94,5 +106,42 @@ h3 .gradient-text {
 @media (max-width: 640px) {
   .gradient-text {
     font-size: 0.95em;
+  }
+}
+
+/* Enhanced backdrop blur for hero */
+.hero-backdrop {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Improved shadow depths */
+.shadow-neu-light {
+  box-shadow: 6px 6px 12px #d1d9e6, -6px -6px 12px #ffffff;
+}
+
+.shadow-neu-medium {
+  box-shadow: 12px 12px 24px #bebebe, -12px -12px 24px #ffffff;
+}
+
+.shadow-neu-heavy {
+  box-shadow: 20px 20px 40px #bebebe, -20px -20px 40px #ffffff;
+}
+
+/* Responsive neumorphic scaling */
+@media (max-width: 480px) {
+  .neu-card {
+    border-radius: 10px;
+    box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  }
+  
+  .neu-card-inset {
+    border-radius: 10px;
+    box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+  }
+  
+  .neu-button {
+    border-radius: 8px;
+    box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #ffffff;
   }
 }
