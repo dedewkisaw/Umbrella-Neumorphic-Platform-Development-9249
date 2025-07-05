@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
@@ -8,14 +8,30 @@ const { FiUmbrella, FiMenu, FiX, FiShoppingBag, FiUsers, FiStar, FiZap } = FiIco
 
 const Header = () => {
   const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <motion.header
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative z-50 bg-neu-100/90 backdrop-blur-xl border-b border-neu-200 shadow-lg"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-neu-100/80 backdrop-blur-xl border-b border-neu-200/50 shadow-xl' 
+          : 'bg-neu-100/90 backdrop-blur-xl border-b border-neu-200 shadow-lg'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 lg:px-6 py-3 lg:py-4">
         <div className="flex items-center justify-between">
@@ -121,7 +137,10 @@ const Header = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
-                onClick={() => navigate('/marketplace')}
+                onClick={() => {
+                  navigate('/marketplace');
+                  setIsMenuOpen(false);
+                }}
                 className="neu-button p-3 text-left hover:scale-105 transition-transform group"
               >
                 <div className="flex items-center gap-3">
@@ -135,6 +154,7 @@ const Header = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
                 href="#pricing"
+                onClick={() => setIsMenuOpen(false)}
                 className="neu-button p-3 text-left hover:scale-105 transition-transform group"
               >
                 <div className="flex items-center gap-3">
@@ -148,6 +168,7 @@ const Header = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
                 href="#features"
+                onClick={() => setIsMenuOpen(false)}
                 className="neu-button p-3 text-left hover:scale-105 transition-transform group"
               >
                 <div className="flex items-center gap-3">
@@ -160,7 +181,10 @@ const Header = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
-                onClick={() => navigate('/dashboard')}
+                onClick={() => {
+                  navigate('/dashboard');
+                  setIsMenuOpen(false);
+                }}
                 className="neu-button p-3 text-left bg-gradient-to-r from-green-500 to-blue-500 text-white hover:scale-105 transition-transform"
               >
                 <div className="flex items-center gap-3">

@@ -15,12 +15,15 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-neu-100">
       <Header />
-      <Hero />
-      <PainPoints />
-      <USP />
-      <Features />
-      <Pricing />
-      <Footer />
+      {/* Add padding-top to prevent content from hiding behind fixed header */}
+      <div className="pt-20 lg:pt-24">
+        <Hero />
+        <PainPoints />
+        <USP />
+        <Features />
+        <Pricing />
+        <Footer />
+      </div>
     </div>
   );
 };

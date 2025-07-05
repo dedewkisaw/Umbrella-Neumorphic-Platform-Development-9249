@@ -67,23 +67,66 @@
   animation: float 6s ease-in-out infinite;
 }
 
+/* Sticky header styles */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Body padding to prevent content jump */
+body {
+  padding-top: 80px; /* Adjust based on header height */
+}
+
+/* Responsive body padding */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
+}
+
+/* Enhanced backdrop blur effects */
+.backdrop-blur-light {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.backdrop-blur-medium {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.backdrop-blur-heavy {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .neu-card {
     border-radius: 12px;
     box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
   }
-  
+
   .neu-card-inset {
     border-radius: 12px;
     box-shadow: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff;
   }
-  
+
   .neu-button {
     border-radius: 10px;
     box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
   }
-  
+
   .neu-button:hover {
     box-shadow: 2px 2px 4px #bebebe, -2px -2px 4px #ffffff;
   }
@@ -134,14 +177,29 @@ h3 .gradient-text {
     border-radius: 10px;
     box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
   }
-  
+
   .neu-card-inset {
     border-radius: 10px;
     box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
   }
-  
+
   .neu-button {
     border-radius: 8px;
     box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #ffffff;
   }
+}
+
+/* Header transparency transitions */
+.header-transparent {
+  background: rgba(241, 245, 249, 0.8) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(203, 213, 225, 0.5);
+}
+
+.header-solid {
+  background: rgba(241, 245, 249, 0.95) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgb(203, 213, 225);
 }

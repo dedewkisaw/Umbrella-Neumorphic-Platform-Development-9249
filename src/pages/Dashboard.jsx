@@ -6,10 +6,10 @@ import SafeIcon from '../common/SafeIcon';
 import AppCard from '../components/AppCard';
 import SubscriptionModal from '../components/SubscriptionModal';
 
-const { 
-  FiArrowLeft, FiShoppingBag, FiBarChart, FiGlobe, FiDollarSign, 
-  FiShoppingCart, FiEye, FiDownload, FiStar, FiTrendingUp, FiZap,
-  FiShield, FiCheck, FiClock, FiHeart, FiAward, FiGift
+const {
+  FiArrowLeft, FiShoppingBag, FiBarChart, FiGlobe, FiDollarSign, FiShoppingCart,
+  FiEye, FiDownload, FiStar, FiTrendingUp, FiZap, FiShield, FiCheck, FiClock,
+  FiHeart, FiAward, FiGift
 } = FiIcons;
 
 const Dashboard = () => {
@@ -102,11 +102,9 @@ const Dashboard = () => {
 
   const handleUpdateApp = (app) => {
     console.log('Updating:', app.name);
-    setPurchasedApps(apps => 
-      apps.map(a => 
-        a.id === app.id 
-          ? { ...a, status: 'Active', lastUpdate: new Date().toISOString().split('T')[0] }
-          : a
+    setPurchasedApps(apps =>
+      apps.map(a =>
+        a.id === app.id ? { ...a, status: 'Active', lastUpdate: new Date().toISOString().split('T')[0] } : a
       )
     );
   };
@@ -114,9 +112,7 @@ const Dashboard = () => {
   const totalSpent = purchasedApps.reduce((sum, app) => sum + app.price, 0);
   const totalApps = purchasedApps.length;
   const totalDownloads = purchasedApps.reduce((sum, app) => sum + app.downloads, 0);
-  const avgRating = purchasedApps.length > 0 
-    ? purchasedApps.reduce((sum, app) => sum + app.rating, 0) / purchasedApps.length 
-    : 0;
+  const avgRating = purchasedApps.length > 0 ? purchasedApps.reduce((sum, app) => sum + app.rating, 0) / purchasedApps.length : 0;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-6">
@@ -182,9 +178,7 @@ const Dashboard = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => setActiveTab(tab.id)}
-                className={`neu-button px-8 py-4 hover:scale-105 transition-transform flex-shrink-0 ${
-                  activeTab === tab.id ? 'bg-blue-500 text-white' : ''
-                }`}
+                className={`neu-button px-8 py-4 hover:scale-105 transition-transform flex-shrink-0 ${activeTab === tab.id ? 'bg-blue-500 text-white' : ''}`}
               >
                 <div className="flex items-center gap-3">
                   <SafeIcon icon={tab.icon} className="w-5 h-5" />
@@ -259,8 +253,7 @@ const Dashboard = () => {
                       <h3 className="text-xl font-bold text-neu-900">Your Smart Investment</h3>
                     </div>
                     <p className="text-neu-600 text-lg mb-6">
-                      You've saved <span className="font-bold text-green-600">$200,000+</span> in development costs 
-                      and <span className="font-bold text-blue-600">18+ months</span> of development time!
+                      You've saved <span className="font-bold text-green-600">$200,000+</span> in development costs and <span className="font-bold text-blue-600">18+ months</span> of development time!
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <div className="neu-button px-6 py-3 bg-green-500 text-white hover:scale-105 transition-transform">
@@ -285,6 +278,7 @@ const Dashboard = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="neu-card p-8"
+                style={{ backgroundColor: '#f4f9ff' }}
               >
                 <div className="flex items-center justify-between mb-8">
                   <h3 className="text-2xl font-bold text-neu-900">Your Applications</h3>
@@ -385,7 +379,7 @@ const Dashboard = () => {
             </motion.div>
           )}
 
-          {/* Other tab content remains the same */}
+          {/* Other tab content */}
           {activeTab === 'purchases' && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -426,9 +420,7 @@ const Dashboard = () => {
                   <div className="neu-card-inset p-6">
                     <div className="text-2xl font-bold text-neu-900 mb-2">{currentPlan}</div>
                     <p className="text-neu-600 mb-4">
-                      {currentPlan === 'Free' 
-                        ? 'Limited access to basic applications' 
-                        : 'Full access to premium applications'}
+                      {currentPlan === 'Free' ? 'Limited access to basic applications' : 'Full access to premium applications'}
                     </p>
                     <button
                       onClick={() => setIsSubscriptionModalOpen(true)}
@@ -513,6 +505,7 @@ const EnhancedPurchasedAppCard = ({ app, onDownload, onUpdate }) => {
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.02 }}
       className="neu-card p-6 hover:shadow-lg transition-all duration-300 group"
+      style={{ backgroundColor: 'white' }}
     >
       <div className="space-y-6">
         {/* Enhanced Header */}
