@@ -13,6 +13,7 @@ import Help from './pages/Help';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminRoute from './components/AdminRoute';
+import ChatWidget from './components/ChatWidget';
 import './App.css';
 
 function App() {
@@ -33,14 +34,11 @@ function App() {
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLogin />} />
-          <Route 
-            path="/admin/dashboard" 
-            element={
-              <AdminRoute>
-                <AdminDashboard />
-              </AdminRoute>
-            } 
-          />
+          <Route path="/admin/dashboard" element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          } />
           
           {/* Placeholder routes for other footer links */}
           <Route path="/careers" element={<About />} />
@@ -49,6 +47,9 @@ function App() {
           <Route path="/status" element={<Help />} />
           <Route path="/bugs" element={<Help />} />
         </Routes>
+        
+        {/* Chat Widget - Available on all pages except admin */}
+        <ChatWidget />
       </div>
     </Router>
   );

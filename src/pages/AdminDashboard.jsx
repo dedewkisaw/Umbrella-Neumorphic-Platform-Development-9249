@@ -6,10 +6,11 @@ import SafeIcon from '../common/SafeIcon';
 import DropdownMenu from '../components/DropdownMenu';
 import AdminAnalytics from '../components/AdminAnalytics';
 import AdminUserManagement from '../components/AdminUserManagement';
+import AdminMessages from '../components/AdminMessages';
 import useDataStore from '../stores/DataStore';
 import { useRealtimeData } from '../hooks/useRealtimeData';
 
-const { FiShield, FiUsers, FiDollarSign, FiTrendingUp, FiActivity, FiGlobe, FiShoppingCart, FiEye, FiDownload, FiStar, FiClock, FiBarChart, FiPieChart, FiMap, FiMonitor, FiDatabase, FiLock, FiLogOut, FiRefreshCw, FiAlertTriangle, FiCheckCircle, FiXCircle, FiSettings, FiMail, FiPhone, FiCreditCard, FiTarget, FiTrendingDown, FiUserCheck, FiUserX, FiFilter, FiCalendar, FiFileText, FiExternalLink, FiAward, FiCpu, FiHardDrive, FiWifi, FiServer, FiCloud, FiCode, FiPackage, FiEdit, FiBookOpen, FiGamepad2, FiLayers, FiZap } = FiIcons;
+const { FiShield, FiUsers, FiDollarSign, FiTrendingUp, FiActivity, FiGlobe, FiShoppingCart, FiEye, FiDownload, FiStar, FiClock, FiBarChart, FiPieChart, FiMap, FiMonitor, FiDatabase, FiLock, FiLogOut, FiRefreshCw, FiAlertTriangle, FiCheckCircle, FiXCircle, FiSettings, FiMail, FiPhone, FiCreditCard, FiTarget, FiTrendingDown, FiUserCheck, FiUserX, FiFilter, FiCalendar, FiFileText, FiExternalLink, FiAward, FiCpu, FiHardDrive, FiWifi, FiServer, FiCloud, FiCode, FiPackage, FiEdit, FiBookOpen, FiGamepad2, FiLayers, FiZap, FiMessageSquare } = FiIcons;
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -77,6 +78,7 @@ const AdminDashboard = () => {
     { id: 'users', label: 'Users', icon: FiUsers },
     { id: 'sales', label: 'Sales', icon: FiDollarSign },
     { id: 'apps', label: 'Applications', icon: FiShoppingCart },
+    { id: 'messages', label: 'Messages', icon: FiMessageSquare },
     { id: 'security', label: 'Security', icon: FiShield },
     { id: 'system', label: 'System', icon: FiMonitor }
   ];
@@ -300,7 +302,7 @@ const AdminDashboard = () => {
                   <SafeIcon icon={tab.icon} className="w-5 h-5" />
                   <span className="font-medium">{tab.label}</span>
                   {/* Show live indicators for data tabs */}
-                  {(tab.id === 'users' || tab.id === 'sales' || tab.id === 'apps' || tab.id === 'security' || tab.id === 'system') && (
+                  {(tab.id === 'users' || tab.id === 'sales' || tab.id === 'apps' || tab.id === 'messages' || tab.id === 'security' || tab.id === 'system') && (
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                   )}
                 </div>
@@ -486,6 +488,7 @@ const AdminDashboard = () => {
 
           {activeTab === 'analytics' && <AdminAnalytics />}
           {activeTab === 'users' && <AdminUserManagement />}
+          {activeTab === 'messages' && <AdminMessages />}
 
           {activeTab === 'sales' && (
             <motion.div
