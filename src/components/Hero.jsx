@@ -4,11 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { 
-  FiArrowRight, FiPlay, FiShoppingBag, FiZap, FiShield, FiStar, FiUsers, 
-  FiGlobe, FiTrendingUp, FiCheck, FiHeart, FiAward, FiCode, FiMonitor,
-  FiDatabase, FiLayout
-} = FiIcons;
+const { FiArrowRight, FiPlay, FiShoppingBag, FiZap, FiShield, FiStar, FiUsers, FiGlobe, FiTrendingUp, FiCheck, FiHeart, FiAward, FiCode, FiMonitor, FiDatabase, FiLayout, FiEdit, FiBarChart } = FiIcons;
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -86,7 +82,6 @@ const Hero = () => {
                     <SafeIcon icon={FiArrowRight} className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </button>
-                
                 <button className="group neu-button px-6 py-3 lg:px-8 lg:py-4 xl:px-10 xl:py-5 bg-gradient-to-r from-white to-blue-50 border border-blue-200/50 hover:scale-105 transition-all duration-300 hover:shadow-lg">
                   <div className="flex items-center justify-center gap-2 lg:gap-3">
                     <SafeIcon icon={FiPlay} className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 text-neu-600 group-hover:scale-110 transition-transform" />
@@ -124,7 +119,7 @@ const Hero = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Visual Showcase */}
+            {/* Right Column - Enhanced Visual Showcase */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -137,11 +132,11 @@ const Hero = () => {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.6 }}
-                  className="neu-card p-4 lg:p-6 xl:p-8 animate-float bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 border border-white/50 shadow-lg backdrop-blur-sm"
+                  className="neu-card p-4 lg:p-6 xl:p-8 animate-float bg-gradient-to-br from-white/80 via-blue-50/40 to-purple-50/40 border border-white/60 shadow-xl backdrop-blur-lg"
                 >
                   <div className="space-y-4 lg:space-y-6 xl:space-y-8">
-                    {/* Browser Header */}
-                    <div className="flex items-center justify-between p-3 lg:p-4 xl:p-6 neu-card-inset bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
+                    {/* Enhanced Browser Header */}
+                    <div className="flex items-center justify-between p-3 lg:p-4 xl:p-6 neu-card-inset bg-gradient-to-r from-gray-50/80 to-blue-50/80 rounded-lg backdrop-blur-sm">
                       <div className="flex items-center gap-2 lg:gap-3 xl:gap-4">
                         <div className="flex gap-1.5 lg:gap-2 xl:gap-3">
                           <div className="w-2 h-2 lg:w-3 lg:h-3 xl:w-4 xl:h-4 bg-red-500 rounded-full animate-pulse shadow-sm"></div>
@@ -151,40 +146,40 @@ const Hero = () => {
                         <div className="w-0.5 h-4 lg:h-6 xl:h-8 bg-gray-300 rounded-full mx-1 lg:mx-2 xl:mx-3"></div>
                         <SafeIcon icon={FiGlobe} className="w-3 h-3 lg:w-4 lg:h-4 xl:w-5 xl:h-5 text-gray-500" />
                       </div>
-                      <div className="neu-button px-2 py-1 lg:px-3 lg:py-2 xl:px-4 xl:py-3 bg-gradient-to-r from-blue-100 to-purple-100 border border-blue-200/50">
-                        <span className="text-neu-700 font-semibold text-xs lg:text-sm xl:text-base">umbrella.app</span>
+                      <div className="neu-button px-2 py-1 lg:px-3 lg:py-2 xl:px-4 xl:py-3 bg-gradient-to-r from-blue-100/80 to-purple-100/80 border border-blue-200/50 backdrop-blur-sm">
+                        <span className="text-neu-700 font-semibold text-xs lg:text-sm xl:text-base">umbrella.shop</span>
                       </div>
                     </div>
 
-                    {/* App Grid */}
+                    {/* Enhanced App Grid with Consistent Icons */}
                     <div className="grid grid-cols-2 gap-3 lg:gap-4 xl:gap-6">
                       {[
-                        { name: 'E-commerce Pro', price: '$49', category: 'Business', rating: 4.8, color: 'from-blue-500 to-purple-600', icon: FiShoppingBag },
-                        { name: 'Portfolio Studio', price: '$29', category: 'Creative', rating: 4.9, color: 'from-green-500 to-teal-600', icon: FiLayout },
-                        { name: 'SaaS Dashboard', price: '$79', category: 'Analytics', rating: 4.7, color: 'from-purple-500 to-pink-600', icon: FiDatabase },
-                        { name: 'Blog Master', price: '$39', category: 'Content', rating: 4.6, color: 'from-orange-500 to-red-600', icon: FiCode }
+                        { name: 'E-commerce Pro', price: '$49', category: 'Business', rating: 4.8, icon: FiShoppingBag, color: 'from-blue-500/80 to-purple-600/80' },
+                        { name: 'Portfolio Studio', price: '$29', category: 'Creative', rating: 4.9, icon: FiUsers, color: 'from-green-500/80 to-teal-600/80' },
+                        { name: 'SaaS Dashboard', price: '$79', category: 'Analytics', rating: 4.7, icon: FiBarChart, color: 'from-purple-500/80 to-pink-600/80' },
+                        { name: 'Blog Master', price: '$39', category: 'Content', rating: 4.6, icon: FiEdit, color: 'from-orange-500/80 to-red-600/80' }
                       ].map((app, i) => (
                         <motion.div
                           key={i}
                           initial={{ opacity: 0, y: 15 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.7 + i * 0.1 }}
-                          className="neu-card-inset p-3 lg:p-4 xl:p-5 space-y-2 lg:space-y-3 xl:space-y-4 hover:scale-105 transition-all duration-300 bg-gradient-to-br from-white to-blue-50/50 border border-white/50"
+                          className="neu-card-inset p-3 lg:p-4 xl:p-5 space-y-2 lg:space-y-3 xl:space-y-4 hover:scale-105 transition-all duration-300 bg-gradient-to-br from-white/60 to-blue-50/40 border border-white/60 backdrop-blur-sm"
                         >
-                          {/* App Icon Header */}
-                          <div className={`w-full h-6 lg:h-8 xl:h-12 bg-gradient-to-r ${app.color} rounded-lg flex items-center justify-center shadow-lg relative overflow-hidden`}>
-                            <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
-                            <SafeIcon icon={app.icon} className="w-3 h-3 lg:w-4 lg:h-4 xl:w-6 xl:h-6 text-white relative z-10" />
+                          {/* Enhanced App Icon Header with Feather Icons */}
+                          <div className={`w-full h-6 lg:h-8 xl:h-12 bg-gradient-to-r ${app.color} rounded-lg flex items-center justify-center shadow-lg relative overflow-hidden backdrop-blur-sm`}>
+                            <div className="absolute inset-0 bg-white/20 backdrop-blur-sm"></div>
+                            <SafeIcon icon={app.icon} className="w-3 h-3 lg:w-4 lg:h-4 xl:w-6 xl:h-6 text-white relative z-10 filter drop-shadow-lg" />
                           </div>
-                          
+
                           {/* App Details */}
                           <div className="space-y-1 lg:space-y-2 xl:space-y-3">
                             <div className="text-xs lg:text-sm xl:text-base font-bold text-neu-900 truncate">{app.name}</div>
                             <div className="text-xs lg:text-xs xl:text-sm text-neu-600 font-medium">{app.category}</div>
-                            
+
                             {/* Rating and Price */}
                             <div className="flex items-center justify-between pt-1 lg:pt-2 xl:pt-3">
-                              <div className="flex items-center gap-1 neu-button px-1.5 py-0.5 lg:px-2 lg:py-1 xl:px-3 xl:py-2 bg-yellow-50 border border-yellow-200/50">
+                              <div className="flex items-center gap-1 neu-button px-1.5 py-0.5 lg:px-2 lg:py-1 xl:px-3 xl:py-2 bg-yellow-50/80 border border-yellow-200/50 backdrop-blur-sm">
                                 <SafeIcon icon={FiStar} className="w-2 h-2 lg:w-3 lg:h-3 xl:w-4 xl:h-4 text-yellow-500" />
                                 <span className="text-xs lg:text-xs xl:text-sm text-yellow-700 font-bold">{app.rating}</span>
                               </div>
@@ -195,16 +190,16 @@ const Hero = () => {
                       ))}
                     </div>
 
-                    {/* Stats Bar */}
+                    {/* Enhanced Stats Bar */}
                     <motion.div
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 1.0 }}
-                      className="neu-card-inset p-3 lg:p-4 xl:p-6 bg-gradient-to-r from-green-50 to-blue-50 border border-green-200/50"
+                      className="neu-card-inset p-3 lg:p-4 xl:p-6 bg-gradient-to-r from-green-50/80 to-blue-50/80 border border-green-200/50 backdrop-blur-sm"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 lg:gap-3 xl:gap-4">
-                          <div className="p-1.5 lg:p-2 xl:p-3 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg shadow-lg">
+                          <div className="p-1.5 lg:p-2 xl:p-3 bg-gradient-to-r from-green-500/90 to-blue-500/90 rounded-lg shadow-lg backdrop-blur-sm">
                             <SafeIcon icon={FiTrendingUp} className="w-3 h-3 lg:w-4 lg:h-4 xl:w-5 xl:h-5 text-white" />
                           </div>
                           <span className="text-neu-700 font-bold text-xs lg:text-sm xl:text-base">Live Stats</span>
@@ -224,21 +219,30 @@ const Hero = () => {
                   </div>
                 </motion.div>
 
-                {/* Floating Elements - Hidden on mobile and small tablets */}
+                {/* Enhanced Floating Elements with Feather Icons */}
                 <motion.div
                   animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -top-4 -right-4 lg:-top-6 lg:-right-6 p-2 lg:p-3 xl:p-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl shadow-lg border border-white/20 hidden xl:block"
+                  className="absolute -top-4 -right-4 lg:-top-6 lg:-right-6 neu-button p-2 lg:p-3 xl:p-4 bg-gradient-to-r from-blue-500/90 to-purple-500/90 text-white shadow-lg border border-white/30 hidden xl:block backdrop-blur-sm"
                 >
-                  <SafeIcon icon={FiZap} className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 text-white" />
+                  <SafeIcon icon={FiZap} className="w-4 h-4 lg:w-5 lg:h-5 filter drop-shadow-lg" />
                 </motion.div>
-
+                
                 <motion.div
                   animate={{ y: [0, 15, 0], rotate: [0, -5, 0] }}
                   transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -bottom-4 -left-4 lg:-bottom-6 lg:-left-6 p-2 lg:p-3 xl:p-4 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl shadow-lg border border-white/20 hidden xl:block"
+                  className="absolute -bottom-4 -left-4 lg:-bottom-6 lg:-left-6 neu-button p-2 lg:p-3 xl:p-4 bg-gradient-to-r from-green-500/90 to-teal-500/90 text-white shadow-lg border border-white/30 hidden xl:block backdrop-blur-sm"
                 >
-                  <SafeIcon icon={FiShoppingBag} className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 text-white" />
+                  <SafeIcon icon={FiShoppingBag} className="w-4 h-4 lg:w-5 lg:h-5 filter drop-shadow-lg" />
+                </motion.div>
+
+                {/* Shopping Cart Icon Floating Element */}
+                <motion.div
+                  animate={{ y: [0, -10, 0], rotate: [0, 3, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  className="absolute top-1/2 -right-8 lg:-right-10 neu-button p-2 lg:p-3 xl:p-4 bg-gradient-to-r from-pink-500/90 to-red-500/90 text-white shadow-lg border border-white/30 hidden lg:block backdrop-blur-sm"
+                >
+                  <SafeIcon icon={FiHeart} className="w-4 h-4 lg:w-5 lg:h-5 filter drop-shadow-lg" />
                 </motion.div>
               </div>
             </motion.div>
