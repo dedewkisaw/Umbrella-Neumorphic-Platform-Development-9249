@@ -9,7 +9,7 @@ export default {
       colors: {
         neu: {
           50: '#f8fafc',
-          100: '#f1f5f9',
+          100: '#f9f9ff', // Updated from f1f5f9 to f9f9ff
           200: '#e2e8f0',
           300: '#cbd5e1',
           400: '#94a3b8',

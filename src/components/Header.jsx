@@ -22,6 +22,18 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Smooth scroll to section
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <motion.header
       initial={{ y: -50, opacity: 0 }}
@@ -71,31 +83,31 @@ const Header = () => {
               </div>
             </motion.button>
 
-            <motion.a
+            <motion.button
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              href="#pricing"
+              onClick={() => scrollToSection('pricing')}
               className="neu-button px-4 py-2 lg:px-5 lg:py-3 hover:scale-105 transition-transform group"
             >
               <div className="flex items-center gap-2">
                 <SafeIcon icon={FiStar} className="w-4 h-4 lg:w-5 lg:h-5 text-neu-600 group-hover:scale-110 transition-transform" />
                 <span className="text-neu-700 font-medium text-sm lg:text-base">Pricing</span>
               </div>
-            </motion.a>
+            </motion.button>
 
-            <motion.a
+            <motion.button
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              href="#features"
+              onClick={() => scrollToSection('features')}
               className="neu-button px-4 py-2 lg:px-5 lg:py-3 hover:scale-105 transition-transform group"
             >
               <div className="flex items-center gap-2">
                 <SafeIcon icon={FiZap} className="w-4 h-4 lg:w-5 lg:h-5 text-neu-600 group-hover:scale-110 transition-transform" />
                 <span className="text-neu-700 font-medium text-sm lg:text-base">Features</span>
               </div>
-            </motion.a>
+            </motion.button>
 
             <motion.button
               initial={{ opacity: 0, y: -20 }}
@@ -149,33 +161,31 @@ const Header = () => {
                 </div>
               </motion.button>
 
-              <motion.a
+              <motion.button
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                href="#pricing"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => scrollToSection('pricing')}
                 className="neu-button p-3 text-left hover:scale-105 transition-transform group"
               >
                 <div className="flex items-center gap-3">
                   <SafeIcon icon={FiStar} className="w-5 h-5 text-neu-600 group-hover:scale-110 transition-transform" />
                   <span className="text-neu-700 font-medium">Pricing</span>
                 </div>
-              </motion.a>
+              </motion.button>
 
-              <motion.a
+              <motion.button
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                href="#features"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => scrollToSection('features')}
                 className="neu-button p-3 text-left hover:scale-105 transition-transform group"
               >
                 <div className="flex items-center gap-3">
                   <SafeIcon icon={FiZap} className="w-5 h-5 text-neu-600 group-hover:scale-110 transition-transform" />
                   <span className="text-neu-700 font-medium">Features</span>
                 </div>
-              </motion.a>
+              </motion.button>
 
               <motion.button
                 initial={{ opacity: 0, x: -20 }}
