@@ -5,7 +5,19 @@ import SafeIcon from '../common/SafeIcon';
 import useDataStore from '../stores/DataStore';
 import { useRealtimeData } from '../hooks/useRealtimeData';
 
-const { FiTrendingUp, FiUsers, FiDollarSign, FiShoppingCart, FiGlobe, FiEye, FiClock, FiTarget, FiBarChart, FiPieChart, FiActivity } = FiIcons;
+const {
+  FiTrendingUp,
+  FiUsers,
+  FiDollarSign,
+  FiShoppingCart,
+  FiGlobe,
+  FiEye,
+  FiClock,
+  FiTarget,
+  FiBarChart,
+  FiPieChart,
+  FiActivity
+} = FiIcons;
 
 const AdminAnalytics = () => {
   const [timeRange, setTimeRange] = useState('7d');
@@ -13,10 +25,10 @@ const AdminAnalytics = () => {
   // Get real-time data from store
   const { users, applications, transactions, activityLogs, getStats } = useDataStore();
   const stats = getStats();
-  
+
   // Enable real-time updates
   useRealtimeData(10000); // Update every 10 seconds
-  
+
   const [realtimeMetrics, setRealtimeMetrics] = useState({
     revenue: { current: 0, previous: 0, change: 0 },
     users: { current: 0, previous: 0, change: 0 },
@@ -35,22 +47,26 @@ const AdminAnalytics = () => {
       revenue: {
         current: currentRevenue,
         previous: prev.revenue.current || currentRevenue * 0.85,
-        change: prev.revenue.current ? ((currentRevenue - prev.revenue.current) / prev.revenue.current * 100).toFixed(1) : '+12.5'
+        change: prev.revenue.current ? 
+          ((currentRevenue - prev.revenue.current) / prev.revenue.current * 100).toFixed(1) : '+12.5'
       },
       users: {
         current: currentUsers,
         previous: prev.users.current || currentUsers - 3,
-        change: prev.users.current ? ((currentUsers - prev.users.current) / prev.users.current * 100).toFixed(1) : '+8.2'
+        change: prev.users.current ? 
+          ((currentUsers - prev.users.current) / prev.users.current * 100).toFixed(1) : '+8.2'
       },
       sales: {
         current: currentSales,
         previous: prev.sales.current || currentSales - 2,
-        change: prev.sales.current ? ((currentSales - prev.sales.current) / prev.sales.current * 100).toFixed(1) : '+15.7'
+        change: prev.sales.current ? 
+          ((currentSales - prev.sales.current) / prev.sales.current * 100).toFixed(1) : '+15.7'
       },
       conversion: {
         current: currentConversion,
         previous: prev.conversion.current || currentConversion - 0.5,
-        change: prev.conversion.current ? ((currentConversion - prev.conversion.current) / prev.conversion.current * 100).toFixed(1) : '+14.3'
+        change: prev.conversion.current ? 
+          ((currentConversion - prev.conversion.current) / prev.conversion.current * 100).toFixed(1) : '+14.3'
       }
     }));
   }, [stats, transactions]);
@@ -59,7 +75,6 @@ const AdminAnalytics = () => {
   const recentActivity = activityLogs.slice(0, 5).map(log => {
     const user = users.find(u => u.id === log.userId);
     const app = applications.find(a => a.id === log.appId);
-    
     return {
       id: log.id,
       type: log.type,
@@ -81,7 +96,7 @@ const AdminAnalytics = () => {
     const totalVisitors = users.length * 10; // Simulate visitors
     const appViews = activityLogs.filter(log => log.type === 'app_view').length + users.length * 3;
     const purchases = transactions.filter(t => t.type === 'purchase').length;
-    
+
     return [
       { stage: 'Visitors', count: totalVisitors, percentage: 100 },
       { stage: 'App Views', count: appViews, percentage: ((appViews / totalVisitors) * 100).toFixed(1) },
@@ -145,7 +160,7 @@ const AdminAnalytics = () => {
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
             <span className="text-green-700 font-medium">Live Data Active</span>
           </div>
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-neu-600">
             Last update: {new Date().toLocaleTimeString()}
           </div>
         </div>
@@ -163,8 +178,8 @@ const AdminAnalytics = () => {
             label: 'Revenue',
             value: `$${realtimeMetrics.revenue.current.toLocaleString()}`,
             icon: FiDollarSign,
-            color: 'text-green-400',
-            bg: 'bg-green-900/30',
+            color: 'text-green-600',
+            bg: 'from-green-100 to-emerald-100',
             change: realtimeMetrics.revenue.change
           },
           {
@@ -172,8 +187,8 @@ const AdminAnalytics = () => {
             label: 'Total Users',
             value: realtimeMetrics.users.current.toLocaleString(),
             icon: FiUsers,
-            color: 'text-blue-400',
-            bg: 'bg-blue-900/30',
+            color: 'text-blue-600',
+            bg: 'from-blue-100 to-cyan-100',
             change: realtimeMetrics.users.change
           },
           {
@@ -181,8 +196,8 @@ const AdminAnalytics = () => {
             label: 'Sales',
             value: realtimeMetrics.sales.current.toLocaleString(),
             icon: FiShoppingCart,
-            color: 'text-purple-400',
-            bg: 'bg-purple-900/30',
+            color: 'text-purple-600',
+            bg: 'from-purple-100 to-pink-100',
             change: realtimeMetrics.sales.change
           },
           {
@@ -190,8 +205,8 @@ const AdminAnalytics = () => {
             label: 'Conversion',
             value: `${realtimeMetrics.conversion.current}%`,
             icon: FiTarget,
-            color: 'text-yellow-400',
-            bg: 'bg-yellow-900/30',
+            color: 'text-yellow-600',
+            bg: 'from-yellow-100 to-orange-100',
             change: realtimeMetrics.conversion.change
           }
         ].map((metric, index) => (
@@ -200,14 +215,14 @@ const AdminAnalytics = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className={`neu-card-inset p-6 ${metric.bg} hover:scale-105 transition-transform`}
+            className={`neu-card-inset p-6 bg-gradient-to-br ${metric.bg} hover:scale-105 transition-transform`}
           >
             <div className="flex items-center gap-3 mb-3">
               <SafeIcon icon={metric.icon} className={`w-6 h-6 ${metric.color}`} />
-              <span className="text-gray-300 text-sm font-medium">{metric.label}</span>
+              <span className="text-neu-700 text-sm font-medium">{metric.label}</span>
             </div>
-            <div className="text-2xl font-bold text-white mb-2">{metric.value}</div>
-            <div className="flex items-center gap-1 text-sm text-green-400">
+            <div className="text-2xl font-bold text-neu-900 mb-2">{metric.value}</div>
+            <div className="flex items-center gap-1 text-sm text-green-600">
               <SafeIcon icon={FiTrendingUp} className="w-4 h-4" />
               +{Math.abs(metric.change)}%
             </div>
@@ -220,24 +235,24 @@ const AdminAnalytics = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="neu-card p-6 bg-gray-800"
+          className="neu-card p-6 bg-gradient-to-br from-white to-blue-50"
         >
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-bold text-white flex items-center gap-2">
-              <SafeIcon icon={FiActivity} className="w-5 h-5 text-green-400" />
+            <h3 className="text-xl font-bold text-neu-900 flex items-center gap-2">
+              <SafeIcon icon={FiActivity} className="w-5 h-5 text-green-600" />
               Real-time Activity
             </h3>
-            <div className="text-sm text-green-400 flex items-center gap-2">
+            <div className="text-sm text-green-600 flex items-center gap-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               Live
             </div>
           </div>
           <div className="space-y-4">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-300">Time</span>
-              <span className="text-gray-300">User</span>
-              <span className="text-gray-300">Action</span>
-              <span className="text-gray-300">Amount</span>
+              <span className="text-neu-600">Time</span>
+              <span className="text-neu-600">User</span>
+              <span className="text-neu-600">Action</span>
+              <span className="text-neu-600">Amount</span>
             </div>
             {recentActivity.map((activity, index) => (
               <motion.div
@@ -245,19 +260,18 @@ const AdminAnalytics = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="neu-card-inset p-3 bg-gray-700/30"
+                className="neu-card-inset p-3 bg-white/70"
               >
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-white font-mono">{activity.time}</span>
-                  <span className="text-blue-400 truncate max-w-[100px]">{activity.user}</span>
+                  <span className="text-neu-900 font-mono">{activity.time}</span>
+                  <span className="text-blue-600 truncate max-w-[100px]">{activity.user}</span>
                   <span className={`font-medium ${
-                    activity.type === 'app_purchase' ? 'text-green-400' :
-                    activity.type === 'user_login' ? 'text-blue-400' : 
-                    'text-purple-400'
+                    activity.type === 'app_purchase' ? 'text-green-600' :
+                    activity.type === 'user_login' ? 'text-blue-600' : 'text-purple-600'
                   }`}>
                     {activity.type.replace('_', ' ')}
                   </span>
-                  <span className="text-green-400">
+                  <span className="text-green-600">
                     {activity.amount ? `$${activity.amount}` : '-'}
                   </span>
                 </div>
@@ -269,17 +283,17 @@ const AdminAnalytics = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="neu-card p-6 bg-gray-800"
+          className="neu-card p-6 bg-gradient-to-br from-white to-purple-50"
         >
-          <h3 className="text-xl font-bold text-white mb-6">Conversion Funnel</h3>
+          <h3 className="text-xl font-bold text-neu-900 mb-6">Conversion Funnel</h3>
           <div className="space-y-3">
             {conversionFunnel.map((stage, index) => (
-              <div key={stage.stage} className="neu-card-inset p-4 bg-gray-700/30">
+              <div key={stage.stage} className="neu-card-inset p-4 bg-white/70">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-white font-medium">{stage.stage}</span>
-                  <span className="text-gray-300">{stage.count.toLocaleString()}</span>
+                  <span className="text-neu-900 font-medium">{stage.stage}</span>
+                  <span className="text-neu-700">{stage.count.toLocaleString()}</span>
                 </div>
-                <div className="w-full bg-gray-600 rounded-full h-2">
+                <div className="w-full bg-neu-200 rounded-full h-2">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${stage.percentage}%` }}
@@ -287,7 +301,7 @@ const AdminAnalytics = () => {
                     className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
                   ></motion.div>
                 </div>
-                <div className="text-right text-xs text-gray-400 mt-1">
+                <div className="text-right text-xs text-neu-500 mt-1">
                   {stage.percentage}%
                 </div>
               </div>
@@ -301,9 +315,9 @@ const AdminAnalytics = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="neu-card p-6 bg-gray-800"
+          className="neu-card p-6 bg-gradient-to-br from-white to-green-50"
         >
-          <h3 className="text-xl font-bold text-white mb-6">Top Countries</h3>
+          <h3 className="text-xl font-bold text-neu-900 mb-6">Top Countries</h3>
           <div className="space-y-4">
             {topCountries.map((country, index) => (
               <motion.div
@@ -311,19 +325,19 @@ const AdminAnalytics = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="neu-card-inset p-4 bg-gray-700/30"
+                className="neu-card-inset p-4 bg-white/70"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{country.flag}</span>
                     <div>
-                      <div className="text-white font-medium">{country.country}</div>
-                      <div className="text-gray-400 text-sm">{country.users.toLocaleString()} users</div>
+                      <div className="text-neu-900 font-medium">{country.country}</div>
+                      <div className="text-neu-500 text-sm">{country.users.toLocaleString()} users</div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-green-400 font-semibold">${country.revenue.toLocaleString()}</div>
-                    <div className="text-gray-400 text-sm">#{index + 1}</div>
+                    <div className="text-green-600 font-semibold">${country.revenue.toLocaleString()}</div>
+                    <div className="text-neu-500 text-sm">#{index + 1}</div>
                   </div>
                 </div>
               </motion.div>
@@ -334,17 +348,17 @@ const AdminAnalytics = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="neu-card p-6 bg-gray-800"
+          className="neu-card p-6 bg-gradient-to-br from-white to-yellow-50"
         >
-          <h3 className="text-xl font-bold text-white mb-6">Device Breakdown</h3>
+          <h3 className="text-xl font-bold text-neu-900 mb-6">Device Breakdown</h3>
           <div className="space-y-6">
             {deviceStats.map((device) => (
-              <div key={device.device} className="neu-card-inset p-4 bg-gray-700/30">
+              <div key={device.device} className="neu-card-inset p-4 bg-white/70">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-white font-medium">{device.device}</span>
-                  <span className="text-gray-300">{device.percentage}%</span>
+                  <span className="text-neu-900 font-medium">{device.device}</span>
+                  <span className="text-neu-700">{device.percentage}%</span>
                 </div>
-                <div className="w-full bg-gray-600 rounded-full h-3">
+                <div className="w-full bg-neu-200 rounded-full h-3">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${device.percentage}%` }}
@@ -355,31 +369,30 @@ const AdminAnalytics = () => {
                     }`}
                   ></motion.div>
                 </div>
-                <div className="text-gray-400 text-sm mt-1">
+                <div className="text-neu-500 text-sm mt-1">
                   {device.users.toLocaleString()} users
                 </div>
               </div>
             ))}
           </div>
-
-          <div className="mt-6 neu-card-inset p-4 bg-gray-700/30">
-            <h4 className="text-lg font-semibold text-white mb-3">Performance Metrics</h4>
+          <div className="mt-6 neu-card-inset p-4 bg-white/70">
+            <h4 className="text-lg font-semibold text-neu-900 mb-3">Performance Metrics</h4>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <div className="text-gray-300">Avg. Session</div>
-                <div className="text-white font-semibold">4m 12s</div>
+                <div className="text-neu-600">Avg. Session</div>
+                <div className="text-neu-900 font-semibold">4m 12s</div>
               </div>
               <div>
-                <div className="text-gray-300">Bounce Rate</div>
-                <div className="text-white font-semibold">18.2%</div>
+                <div className="text-neu-600">Bounce Rate</div>
+                <div className="text-neu-900 font-semibold">18.2%</div>
               </div>
               <div>
-                <div className="text-gray-300">Pages/Session</div>
-                <div className="text-white font-semibold">3.7</div>
+                <div className="text-neu-600">Pages/Session</div>
+                <div className="text-neu-900 font-semibold">3.7</div>
               </div>
               <div>
-                <div className="text-gray-300">Conversion</div>
-                <div className="text-white font-semibold">{stats.conversionRate}%</div>
+                <div className="text-neu-600">Conversion</div>
+                <div className="text-neu-900 font-semibold">{stats.conversionRate}%</div>
               </div>
             </div>
           </div>

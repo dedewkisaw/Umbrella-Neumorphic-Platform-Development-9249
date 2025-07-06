@@ -6,10 +6,78 @@ import SafeIcon from '../common/SafeIcon';
 import DropdownMenu from '../components/DropdownMenu';
 import AdminAnalytics from '../components/AdminAnalytics';
 import AdminUserManagement from '../components/AdminUserManagement';
+import AdminRoleManagement from '../components/AdminRoleManagement';
 import useDataStore from '../stores/DataStore';
 import { useRealtimeData } from '../hooks/useRealtimeData';
 
-const { FiShield, FiUsers, FiDollarSign, FiTrendingUp, FiActivity, FiGlobe, FiShoppingCart, FiEye, FiDownload, FiStar, FiClock, FiBarChart, FiPieChart, FiMap, FiMonitor, FiDatabase, FiLock, FiLogOut, FiRefreshCw, FiAlertTriangle, FiCheckCircle, FiXCircle, FiSettings, FiMail, FiPhone, FiCreditCard, FiTarget, FiTrendingDown, FiUserCheck, FiUserX, FiFilter, FiCalendar, FiFileText, FiExternalLink, FiAward, FiCpu, FiHardDrive, FiWifi, FiServer, FiCloud, FiCode, FiPackage, FiEdit, FiBookOpen, FiGamepad2, FiLayers, FiZap, FiMessageSquare } = FiIcons;
+const {
+  FiShield,
+  FiUsers,
+  FiDollarSign,
+  FiTrendingUp,
+  FiActivity,
+  FiGlobe,
+  FiShoppingCart,
+  FiEye,
+  FiDownload,
+  FiStar,
+  FiClock,
+  FiBarChart,
+  FiPieChart,
+  FiMap,
+  FiMonitor,
+  FiDatabase,
+  FiLock,
+  FiLogOut,
+  FiRefreshCw,
+  FiAlertTriangle,
+  FiCheckCircle,
+  FiXCircle,
+  FiSettings,
+  FiMail,
+  FiPhone,
+  FiCreditCard,
+  FiTarget,
+  FiTrendingDown,
+  FiUserCheck,
+  FiUserX,
+  FiFilter,
+  FiCalendar,
+  FiFileText,
+  FiExternalLink,
+  FiAward,
+  FiCpu,
+  FiHardDrive,
+  FiWifi,
+  FiServer,
+  FiCloud,
+  FiCode,
+  FiPackage,
+  FiEdit,
+  FiBookOpen,
+  FiGamepad2,
+  FiLayers,
+  FiZap,
+  FiMessageSquare,
+  FiCrown,
+  FiFlag,
+  FiTrash,
+  FiSearch,
+  FiPlus,
+  FiMinus,
+  FiX,
+  FiCheck,
+  FiUpload,
+  FiArchive,
+  FiPlay,
+  FiPause,
+  FiRotateCcw,
+  FiHeart,
+  FiShare,
+  FiLink,
+  FiCopy,
+  FiMoreHorizontal
+} = FiIcons;
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -75,6 +143,7 @@ const AdminDashboard = () => {
     { id: 'overview', label: 'Overview', icon: FiBarChart },
     { id: 'analytics', label: 'Analytics', icon: FiPieChart },
     { id: 'users', label: 'Users', icon: FiUsers },
+    { id: 'roles', label: 'Roles & Permissions', icon: FiCrown },
     { id: 'sales', label: 'Sales', icon: FiDollarSign },
     { id: 'apps', label: 'Applications', icon: FiShoppingCart },
     { id: 'messages', label: 'Messages', icon: FiMessageSquare },
@@ -103,7 +172,6 @@ const AdminDashboard = () => {
     return activityLogs.slice(0, 5).map(log => {
       const user = users.find(u => u.id === log.userId);
       const app = applications.find(a => a.id === log.appId);
-      
       return {
         id: log.id,
         type: log.type,
@@ -220,30 +288,30 @@ const AdminDashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 p-4 lg:p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-4 lg:p-6">
       <div className="max-w-7xl mx-auto">
-        {/* Enhanced Header with Live Stats */}
+        {/* Enhanced Header with Neumorphic Design */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="neu-card p-6 mb-8 bg-gray-800 border border-blue-500/30"
+          className="neu-card p-6 mb-8 bg-gradient-to-r from-blue-50 to-purple-50"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="neu-button p-3 bg-blue-600 text-white">
+              <div className="neu-button p-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-xl">
                 <SafeIcon icon={FiShield} className="w-6 h-6" />
               </div>
               <div>
-                <h1 className="text-2xl lg:text-3xl font-bold text-white">
-                  Umbrella <span className="text-blue-400">Admin</span>
+                <h1 className="text-2xl lg:text-3xl font-bold text-neu-900">
+                  Umbrella <span className="gradient-text">Admin</span>
                 </h1>
-                <p className="text-gray-300">Real-time Analytics Dashboard</p>
+                <p className="text-neu-600">Real-time Analytics Dashboard</p>
                 <div className="flex items-center gap-4 mt-2">
-                  <div className="text-sm text-green-400 flex items-center gap-1">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <div className="text-sm text-green-600 flex items-center gap-1">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                     {stats.activeUsers} users online
                   </div>
-                  <div className="text-sm text-blue-400">
+                  <div className="text-sm text-blue-600">
                     ${stats.totalRevenue.toLocaleString()} total revenue
                   </div>
                 </div>
@@ -251,27 +319,24 @@ const AdminDashboard = () => {
             </div>
             <div className="flex items-center gap-4">
               <div className="text-right">
-                <div className="text-green-400 text-sm font-medium flex items-center gap-2">
+                <div className="text-green-600 text-sm font-medium flex items-center gap-2">
                   <SafeIcon icon={FiActivity} className="w-4 h-4" />
                   LIVE DATA
                 </div>
-                <div className="text-gray-400 text-xs">
+                <div className="text-neu-500 text-xs">
                   Last update: {lastUpdate.toLocaleTimeString()}
                 </div>
               </div>
               <button
                 onClick={refreshData}
                 disabled={isRefreshing}
-                className="neu-button p-3 bg-gray-700 text-gray-300 hover:bg-gray-600"
+                className="neu-button p-3 hover:scale-105 transition-transform"
               >
-                <SafeIcon 
-                  icon={FiRefreshCw} 
-                  className={`w-5 h-5 ${isRefreshing ? 'animate-spin' : ''}`} 
-                />
+                <SafeIcon icon={FiRefreshCw} className={`w-5 h-5 text-neu-600 ${isRefreshing ? 'animate-spin' : ''}`} />
               </button>
               <button
                 onClick={handleLogout}
-                className="neu-button p-3 bg-red-600 text-white hover:bg-red-700"
+                className="neu-button p-3 bg-gradient-to-r from-red-500 to-pink-500 text-white hover:scale-105 transition-transform shadow-xl"
               >
                 <SafeIcon icon={FiLogOut} className="w-5 h-5" />
               </button>
@@ -279,11 +344,11 @@ const AdminDashboard = () => {
           </div>
         </motion.div>
 
-        {/* Navigation Tabs */}
+        {/* Navigation Tabs - Neumorphic Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="neu-card p-3 mb-8 bg-gray-800"
+          className="neu-card p-3 mb-8 bg-gradient-to-r from-white to-blue-50"
         >
           <div className="flex gap-2 overflow-x-auto">
             {tabs.map((tab, index) => (
@@ -300,14 +365,16 @@ const AdminDashboard = () => {
                   }
                 }}
                 className={`neu-button px-6 py-3 hover:scale-105 transition-transform flex-shrink-0 ${
-                  activeTab === tab.id ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300'
+                  activeTab === tab.id
+                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-xl'
+                    : 'text-neu-700'
                 }`}
               >
                 <div className="flex items-center gap-2">
                   <SafeIcon icon={tab.icon} className="w-5 h-5" />
                   <span className="font-medium">{tab.label}</span>
                   {/* Show live indicators for data tabs */}
-                  {(tab.id === 'users' || tab.id === 'sales' || tab.id === 'apps' || tab.id === 'messages' || tab.id === 'security' || tab.id === 'system') && (
+                  {(tab.id === 'users' || tab.id === 'sales' || tab.id === 'apps' || tab.id === 'messages' || tab.id === 'security' || tab.id === 'system' || tab.id === 'roles') && (
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                   )}
                 </div>
@@ -325,10 +392,10 @@ const AdminDashboard = () => {
               className="space-y-8"
             >
               {/* Live Metrics Overview */}
-              <div className="neu-card p-8 bg-gray-800">
+              <div className="neu-card p-8 bg-gradient-to-br from-white to-blue-50">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                    <SafeIcon icon={FiTrendingUp} className="w-6 h-6 text-green-400" />
+                  <h2 className="text-2xl font-bold text-neu-900 flex items-center gap-2">
+                    <SafeIcon icon={FiTrendingUp} className="w-6 h-6 text-green-600" />
                     Live Metrics Overview
                   </h2>
                   <DropdownMenu
@@ -344,39 +411,39 @@ const AdminDashboard = () => {
                     variant="primary"
                   />
                 </div>
-                
+
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                   {[
                     {
                       label: 'Total Revenue',
                       value: `$${stats.totalRevenue.toLocaleString()}`,
                       icon: FiDollarSign,
-                      color: 'text-green-400',
-                      bg: 'bg-green-900/30',
+                      color: 'text-green-600',
+                      bg: 'from-green-100 to-emerald-100',
                       change: '+12.5%'
                     },
                     {
                       label: 'Total Users',
                       value: stats.totalUsers.toLocaleString(),
                       icon: FiUsers,
-                      color: 'text-blue-400',
-                      bg: 'bg-blue-900/30',
+                      color: 'text-blue-600',
+                      bg: 'from-blue-100 to-cyan-100',
                       change: '+8.2%'
                     },
                     {
                       label: 'Active Users',
                       value: stats.activeUsers.toLocaleString(),
                       icon: FiUserCheck,
-                      color: 'text-purple-400',
-                      bg: 'bg-purple-900/30',
+                      color: 'text-purple-600',
+                      bg: 'from-purple-100 to-pink-100',
                       change: '+15.7%'
                     },
                     {
                       label: 'Conversion Rate',
                       value: `${stats.conversionRate}%`,
                       icon: FiTarget,
-                      color: 'text-yellow-400',
-                      bg: 'bg-yellow-900/30',
+                      color: 'text-yellow-600',
+                      bg: 'from-yellow-100 to-orange-100',
                       change: '+14.3%'
                     }
                   ].map((stat, index) => (
@@ -385,14 +452,14 @@ const AdminDashboard = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className={`neu-card-inset p-6 ${stat.bg} hover:scale-105 transition-transform`}
+                      className={`neu-card-inset p-6 bg-gradient-to-br ${stat.bg} hover:scale-105 transition-transform`}
                     >
                       <div className="flex items-center gap-3 mb-3">
                         <SafeIcon icon={stat.icon} className={`w-6 h-6 ${stat.color}`} />
-                        <span className="text-gray-300 text-sm font-medium">{stat.label}</span>
+                        <span className="text-neu-700 text-sm font-medium">{stat.label}</span>
                       </div>
-                      <div className="text-2xl font-bold text-white mb-2">{stat.value}</div>
-                      <div className="flex items-center gap-1 text-sm text-green-400">
+                      <div className="text-2xl font-bold text-neu-900 mb-2">{stat.value}</div>
+                      <div className="flex items-center gap-1 text-sm text-green-600">
                         <SafeIcon icon={FiTrendingUp} className="w-4 h-4" />
                         {stat.change}
                       </div>
@@ -404,21 +471,22 @@ const AdminDashboard = () => {
               {/* Real-time Activity and Top Apps */}
               <div className="grid lg:grid-cols-2 gap-8">
                 {/* Real-time Activity */}
-                <div className="neu-card p-6 bg-gray-800">
-                  <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                    <SafeIcon icon={FiActivity} className="w-5 h-5 text-green-400" />
+                <div className="neu-card p-6 bg-gradient-to-br from-white to-green-50">
+                  <h3 className="text-xl font-bold text-neu-900 mb-6 flex items-center gap-2">
+                    <SafeIcon icon={FiActivity} className="w-5 h-5 text-green-600" />
                     Real-time Activity
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                   </h3>
+
                   <div className="space-y-4 max-h-96 overflow-y-auto">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-300">Time</span>
-                      <span className="text-gray-300">User</span>
-                      <span className="text-gray-300">Action</span>
-                      <span className="text-gray-300">Amount</span>
+                      <span className="text-neu-600">Time</span>
+                      <span className="text-neu-600">User</span>
+                      <span className="text-neu-600">Action</span>
+                      <span className="text-neu-600">Amount</span>
                     </div>
                     {recentActivity.map((activity) => (
-                      <div key={activity.id} className="neu-card-inset p-4 bg-gray-700/50">
+                      <div key={activity.id} className="neu-card-inset p-4 bg-white/70 hover:bg-white transition-colors">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <div className={`w-3 h-3 rounded-full ${
@@ -428,21 +496,21 @@ const AdminDashboard = () => {
                               activity.type === 'user_login' ? 'bg-yellow-400' : 'bg-gray-400'
                             }`}></div>
                             <div>
-                              <div className="text-white font-medium text-sm">
+                              <div className="text-neu-900 font-medium text-sm">
                                 {activity.user.split('@')[0]}
                               </div>
-                              <div className="text-gray-400 text-xs">
+                              <div className="text-neu-500 text-xs">
                                 {activity.app}
                               </div>
                             </div>
                           </div>
                           <div className="text-right">
                             {activity.amount && (
-                              <div className="text-green-400 font-semibold">
+                              <div className="text-green-600 font-semibold">
                                 ${activity.amount}
                               </div>
                             )}
-                            <div className="text-gray-400 text-xs">{activity.time}</div>
+                            <div className="text-neu-500 text-xs">{activity.time}</div>
                           </div>
                         </div>
                       </div>
@@ -451,34 +519,35 @@ const AdminDashboard = () => {
                 </div>
 
                 {/* Top Performing Apps */}
-                <div className="neu-card p-6 bg-gray-800">
-                  <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                    <SafeIcon icon={FiAward} className="w-5 h-5 text-yellow-400" />
+                <div className="neu-card p-6 bg-gradient-to-br from-white to-purple-50">
+                  <h3 className="text-xl font-bold text-neu-900 mb-6 flex items-center gap-2">
+                    <SafeIcon icon={FiAward} className="w-5 h-5 text-yellow-600" />
                     Top Performing Apps
                   </h3>
+
                   <div className="space-y-4">
                     {topApps.map((app, index) => (
-                      <div key={app.id} className="neu-card-inset p-4 bg-gray-700/50">
+                      <div key={app.id} className="neu-card-inset p-4 bg-white/70 hover:bg-white transition-colors">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="text-2xl font-bold text-blue-400">#{index + 1}</div>
+                            <div className="text-2xl font-bold text-blue-600">#{index + 1}</div>
                             <div>
-                              <div className="text-white font-medium">{app.name}</div>
-                              <div className="text-gray-400 text-sm flex items-center gap-2">
+                              <div className="text-neu-900 font-medium">{app.name}</div>
+                              <div className="text-neu-500 text-sm flex items-center gap-2">
                                 <span>{app.category}</span>
                                 <span>•</span>
                                 <span className="flex items-center gap-1">
-                                  <SafeIcon icon={FiStar} className="w-3 h-3 text-yellow-400" />
+                                  <SafeIcon icon={FiStar} className="w-3 h-3 text-yellow-500" />
                                   {app.rating}
                                 </span>
                               </div>
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className="text-green-400 font-semibold">
+                            <div className="text-green-600 font-semibold">
                               ${app.revenue.toLocaleString()}
                             </div>
-                            <div className="text-gray-400 text-sm">
+                            <div className="text-neu-500 text-sm">
                               {app.downloads} downloads
                             </div>
                           </div>
@@ -493,273 +562,349 @@ const AdminDashboard = () => {
 
           {activeTab === 'analytics' && <AdminAnalytics />}
           {activeTab === 'users' && <AdminUserManagement />}
+          {activeTab === 'roles' && <AdminRoleManagement />}
 
+          {/* ✅ BEAUTIFUL SALES TAB */}
           {activeTab === 'sales' && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="space-y-8"
             >
-              <div className="neu-card p-8 bg-gray-800">
-                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                  <SafeIcon icon={FiDollarSign} className="w-6 h-6 text-green-400" />
-                  Live Sales Dashboard
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                </h2>
-                
-                {/* Sales metrics */}
-                <div className="grid lg:grid-cols-3 gap-6 mb-8">
-                  <div className="neu-card-inset p-6 bg-green-900/30">
-                    <div className="flex items-center gap-3 mb-3">
-                      <SafeIcon icon={FiTrendingUp} className="w-6 h-6 text-green-400" />
-                      <span className="text-gray-300 text-sm font-medium">Total Sales</span>
-                    </div>
-                    <div className="text-2xl font-bold text-white">
-                      {transactions.filter(t => t.type === 'purchase').length}
-                    </div>
-                  </div>
-                  <div className="neu-card-inset p-6 bg-blue-900/30">
-                    <div className="flex items-center gap-3 mb-3">
-                      <SafeIcon icon={FiDollarSign} className="w-6 h-6 text-blue-400" />
-                      <span className="text-gray-300 text-sm font-medium">Revenue</span>
-                    </div>
-                    <div className="text-2xl font-bold text-white">
-                      ${stats.totalRevenue.toLocaleString()}
-                    </div>
-                  </div>
-                  <div className="neu-card-inset p-6 bg-purple-900/30">
-                    <div className="flex items-center gap-3 mb-3">
-                      <SafeIcon icon={FiTarget} className="w-6 h-6 text-purple-400" />
-                      <span className="text-gray-300 text-sm font-medium">Avg. Order</span>
-                    </div>
-                    <div className="text-2xl font-bold text-white">
-                      ${(stats.totalRevenue / Math.max(transactions.filter(t => t.type === 'purchase').length, 1)).toFixed(2)}
+              {/* Sales Overview */}
+              <div className="neu-card p-8 bg-gradient-to-br from-white to-green-50">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-neu-900 flex items-center gap-2">
+                    <SafeIcon icon={FiDollarSign} className="w-6 h-6 text-green-600" />
+                    Sales Dashboard
+                  </h2>
+                  <div className="flex items-center gap-4">
+                    <div className="text-sm text-green-600 flex items-center gap-2">
+                      <SafeIcon icon={FiActivity} className="w-4 h-4" />
+                      Live Sales Data
                     </div>
                   </div>
                 </div>
 
-                {/* Recent Transactions */}
-                <h3 className="text-lg font-semibold text-white mb-4">Recent Transactions</h3>
-                <div className="space-y-3">
-                  {transactions.slice(0, 10).map((transaction) => {
-                    const user = users.find(u => u.id === transaction.userId);
-                    const app = applications.find(a => a.id === transaction.appId);
-                    
-                    return (
-                      <div key={transaction.id} className="neu-card-inset p-4 bg-gray-700/30">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <div className={`w-3 h-3 rounded-full ${
-                              transaction.type === 'purchase' ? 'bg-green-400' : 'bg-red-400'
-                            }`}></div>
-                            <div>
-                              <div className="text-white font-medium">
-                                {user?.name || 'Unknown User'}
-                              </div>
-                              <div className="text-gray-400 text-sm">
-                                {app?.name || 'Unknown App'} • {transaction.paymentMethod}
-                              </div>
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <div className={`font-semibold ${
-                              transaction.type === 'purchase' ? 'text-green-400' : 'text-red-400'
-                            }`}>
-                              {transaction.type === 'purchase' ? '+' : '-'}${Math.abs(transaction.amount)}
-                            </div>
-                            <div className="text-gray-400 text-sm">
-                              {new Date(transaction.timestamp).toLocaleString()}
-                            </div>
-                          </div>
-                        </div>
+                {/* Sales Metrics */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                  {[
+                    {
+                      label: 'Total Sales',
+                      value: `$${stats.totalRevenue.toLocaleString()}`,
+                      icon: FiDollarSign,
+                      color: 'text-green-600',
+                      bg: 'from-green-100 to-emerald-100',
+                      change: '+18.2%'
+                    },
+                    {
+                      label: 'Transactions',
+                      value: transactions.length.toLocaleString(),
+                      icon: FiCreditCard,
+                      color: 'text-blue-600',
+                      bg: 'from-blue-100 to-cyan-100',
+                      change: '+12.4%'
+                    },
+                    {
+                      label: 'Avg Order Value',
+                      value: `$${(stats.totalRevenue / transactions.length).toFixed(2)}`,
+                      icon: FiTrendingUp,
+                      color: 'text-purple-600',
+                      bg: 'from-purple-100 to-pink-100',
+                      change: '+5.7%'
+                    },
+                    {
+                      label: 'Refunds',
+                      value: `$${stats.totalRefunds.toLocaleString()}`,
+                      icon: FiTrendingDown,
+                      color: 'text-red-600',
+                      bg: 'from-red-100 to-pink-100',
+                      change: '-2.1%'
+                    }
+                  ].map((metric, index) => (
+                    <motion.div
+                      key={metric.label}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className={`neu-card-inset p-6 bg-gradient-to-br ${metric.bg} hover:scale-105 transition-transform`}
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <SafeIcon icon={metric.icon} className={`w-6 h-6 ${metric.color}`} />
+                        <span className="text-neu-700 text-sm font-medium">{metric.label}</span>
                       </div>
-                    );
-                  })}
+                      <div className="text-2xl font-bold text-neu-900 mb-2">{metric.value}</div>
+                      <div className={`flex items-center gap-1 text-sm ${metric.change.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
+                        <SafeIcon icon={metric.change.startsWith('+') ? FiTrendingUp : FiTrendingDown} className="w-4 h-4" />
+                        {metric.change}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Recent Transactions */}
+                <div className="neu-card-inset p-6 bg-white/70">
+                  <h3 className="text-xl font-bold text-neu-900 mb-6">Recent Transactions</h3>
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-6 gap-4 text-sm font-medium text-neu-600 border-b border-neu-200 pb-2">
+                      <span>Transaction ID</span>
+                      <span>User</span>
+                      <span>App</span>
+                      <span>Amount</span>
+                      <span>Status</span>
+                      <span>Date</span>
+                    </div>
+                    {transactions.slice(0, 10).map((transaction) => {
+                      const user = users.find(u => u.id === transaction.userId);
+                      const app = applications.find(a => a.id === transaction.appId);
+                      return (
+                        <motion.div
+                          key={transaction.id}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          className="grid grid-cols-6 gap-4 text-sm neu-card-inset p-4 bg-white/50 hover:bg-white transition-colors"
+                        >
+                          <span className="font-mono text-blue-600">#{transaction.id}</span>
+                          <span className="text-neu-900">{user?.name || 'Unknown'}</span>
+                          <span className="text-neu-700">{app?.name || 'Unknown App'}</span>
+                          <span className={`font-semibold ${transaction.type === 'refund' ? 'text-red-600' : 'text-green-600'}`}>
+                            {transaction.type === 'refund' ? '-' : ''}${transaction.amount}
+                          </span>
+                          <span className={`px-2 py-1 rounded-full text-xs ${
+                            transaction.status === 'completed' ? 'bg-green-100 text-green-800' :
+                            transaction.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                            'bg-red-100 text-red-800'
+                          }`}>
+                            {transaction.status}
+                          </span>
+                          <span className="text-neu-500">
+                            {new Date(transaction.timestamp).toLocaleDateString()}
+                          </span>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </motion.div>
           )}
 
+          {/* ✅ BEAUTIFUL APPS TAB */}
           {activeTab === 'apps' && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="space-y-8"
             >
-              <div className="neu-card p-8 bg-gray-800">
-                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                  <SafeIcon icon={FiShoppingCart} className="w-6 h-6 text-blue-400" />
-                  Application Management
-                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                </h2>
-
-                {/* Apps overview */}
-                <div className="grid lg:grid-cols-4 gap-6 mb-8">
-                  <div className="neu-card-inset p-6 bg-blue-900/30">
-                    <div className="flex items-center gap-3 mb-3">
-                      <SafeIcon icon={FiGlobe} className="w-6 h-6 text-blue-400" />
-                      <span className="text-gray-300 text-sm font-medium">Total Apps</span>
-                    </div>
-                    <div className="text-2xl font-bold text-white">{applications.length}</div>
-                  </div>
-                  <div className="neu-card-inset p-6 bg-green-900/30">
-                    <div className="flex items-center gap-3 mb-3">
-                      <SafeIcon icon={FiDownload} className="w-6 h-6 text-green-400" />
-                      <span className="text-gray-300 text-sm font-medium">Downloads</span>
-                    </div>
-                    <div className="text-2xl font-bold text-white">
-                      {applications.reduce((sum, app) => sum + app.downloads, 0).toLocaleString()}
-                    </div>
-                  </div>
-                  <div className="neu-card-inset p-6 bg-yellow-900/30">
-                    <div className="flex items-center gap-3 mb-3">
-                      <SafeIcon icon={FiStar} className="w-6 h-6 text-yellow-400" />
-                      <span className="text-gray-300 text-sm font-medium">Avg Rating</span>
-                    </div>
-                    <div className="text-2xl font-bold text-white">{stats.avgRating}</div>
-                  </div>
-                  <div className="neu-card-inset p-6 bg-purple-900/30">
-                    <div className="flex items-center gap-3 mb-3">
-                      <SafeIcon icon={FiTrendingUp} className="w-6 h-6 text-purple-400" />
-                      <span className="text-gray-300 text-sm font-medium">Featured</span>
-                    </div>
-                    <div className="text-2xl font-bold text-white">
-                      {applications.filter(app => app.featured).length}
-                    </div>
+              {/* Apps Overview */}
+              <div className="neu-card p-8 bg-gradient-to-br from-white to-purple-50">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-neu-900 flex items-center gap-2">
+                    <SafeIcon icon={FiShoppingCart} className="w-6 h-6 text-purple-600" />
+                    Application Management
+                  </h2>
+                  <div className="flex items-center gap-4">
+                    <button className="neu-button px-4 py-2 bg-gradient-to-r from-green-500 to-blue-500 text-white hover:scale-105 transition-transform">
+                      <div className="flex items-center gap-2">
+                        <SafeIcon icon={FiPlus} className="w-4 h-4" />
+                        Add App
+                      </div>
+                    </button>
                   </div>
                 </div>
 
-                {/* Enhanced Apps list with beautiful icons */}
-                <div className="space-y-4">
-                  {applications.map((app) => {
-                    const IconComponent = getAppIcon(app.category);
-                    const gradientClass = getAppGradient(app.category);
-                    
-                    return (
-                      <div key={app.id} className="neu-card-inset p-6 bg-gray-700/30 hover:scale-105 transition-transform">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-4">
-                            <div className={`w-16 h-16 bg-gradient-to-r ${gradientClass} rounded-xl flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform`}>
-                              <SafeIcon icon={IconComponent} className="w-8 h-8" />
+                {/* App Statistics */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                  {[
+                    {
+                      label: 'Total Apps',
+                      value: applications.length,
+                      icon: FiPackage,
+                      color: 'text-blue-600',
+                      bg: 'from-blue-100 to-cyan-100'
+                    },
+                    {
+                      label: 'Published',
+                      value: applications.filter(app => app.status === 'published').length,
+                      icon: FiCheckCircle,
+                      color: 'text-green-600',
+                      bg: 'from-green-100 to-emerald-100'
+                    },
+                    {
+                      label: 'Total Downloads',
+                      value: applications.reduce((sum, app) => sum + app.downloads, 0).toLocaleString(),
+                      icon: FiDownload,
+                      color: 'text-purple-600',
+                      bg: 'from-purple-100 to-pink-100'
+                    },
+                    {
+                      label: 'Avg Rating',
+                      value: stats.avgRating,
+                      icon: FiStar,
+                      color: 'text-yellow-600',
+                      bg: 'from-yellow-100 to-orange-100'
+                    }
+                  ].map((stat, index) => (
+                    <motion.div
+                      key={stat.label}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className={`neu-card-inset p-6 bg-gradient-to-br ${stat.bg} hover:scale-105 transition-transform`}
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <SafeIcon icon={stat.icon} className={`w-6 h-6 ${stat.color}`} />
+                        <span className="text-neu-700 text-sm font-medium">{stat.label}</span>
+                      </div>
+                      <div className="text-2xl font-bold text-neu-900">{stat.value}</div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Apps List */}
+                <div className="neu-card-inset p-6 bg-white/70">
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-xl font-bold text-neu-900">Applications</h3>
+                    <div className="flex items-center gap-4">
+                      <div className="relative">
+                        <SafeIcon icon={FiSearch} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neu-400 w-4 h-4" />
+                        <input
+                          type="text"
+                          className="neu-input pl-10 pr-4 py-2 bg-neu-100 text-neu-700"
+                          placeholder="Search apps..."
+                        />
+                      </div>
+                      <select className="neu-input p-2 bg-neu-100 text-neu-700">
+                        <option>All Categories</option>
+                        <option>E-commerce</option>
+                        <option>Portfolio</option>
+                        <option>Blog</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {applications.map((app) => {
+                      const IconComponent = getAppIcon(app.category);
+                      const gradientClass = getAppGradient(app.category);
+                      
+                      return (
+                        <motion.div
+                          key={app.id}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          className="neu-card-inset p-6 bg-white/50 hover:bg-white hover:scale-105 transition-all"
+                        >
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className={`w-12 h-12 bg-gradient-to-r ${gradientClass} rounded-xl flex items-center justify-center text-white shadow-lg`}>
+                              <SafeIcon icon={IconComponent} className="w-6 h-6" />
                             </div>
                             <div>
-                              <div className="text-white font-semibold text-lg flex items-center gap-2">
-                                {app.name}
-                                {app.featured && (
-                                  <div className="neu-button p-1 bg-yellow-500 text-white">
-                                    <SafeIcon icon={FiStar} className="w-3 h-3" />
-                                  </div>
-                                )}
-                              </div>
-                              <div className="text-gray-400 text-sm flex items-center gap-2">
-                                <span>by {app.developer}</span>
-                                <span>•</span>
-                                <span className="px-2 py-1 rounded-full text-xs bg-blue-900/50 text-blue-300">
-                                  {app.category}
-                                </span>
-                              </div>
-                              <div className="text-gray-500 text-xs mt-1 flex items-center gap-4">
-                                <span>Version {app.version}</span>
-                                <span>•</span>
-                                <span>{app.size}</span>
-                                <span>•</span>
-                                <span>Published {new Date(app.publishDate).toLocaleDateString()}</span>
-                              </div>
+                              <h4 className="font-semibold text-neu-900">{app.name}</h4>
+                              <p className="text-neu-600 text-sm">{app.developer}</p>
                             </div>
                           </div>
-                          <div className="text-right">
-                            <div className="text-2xl font-bold text-green-400 mb-1">${app.price}</div>
-                            <div className="text-gray-400 text-sm mb-2">
-                              {app.downloads.toLocaleString()} downloads
+
+                          <div className="space-y-3">
+                            <div className="flex items-center justify-between text-sm">
+                              <span className="text-neu-600">Price</span>
+                              <span className="font-semibold text-green-600">${app.price}</span>
                             </div>
-                            <div className="flex items-center gap-1 text-yellow-400 text-sm mb-2">
-                              <SafeIcon icon={FiStar} className="w-3 h-3" />
-                              {app.rating} ({app.reviews} reviews)
+                            <div className="flex items-center justify-between text-sm">
+                              <span className="text-neu-600">Downloads</span>
+                              <span className="font-semibold text-neu-900">{app.downloads.toLocaleString()}</span>
                             </div>
-                            <div className="text-green-300 text-sm font-semibold">
-                              ${app.revenue.toLocaleString()} revenue
+                            <div className="flex items-center justify-between text-sm">
+                              <span className="text-neu-600">Rating</span>
+                              <div className="flex items-center gap-1">
+                                <SafeIcon icon={FiStar} className="w-4 h-4 text-yellow-500" />
+                                <span className="font-semibold text-neu-900">{app.rating}</span>
+                              </div>
+                            </div>
+                            <div className="flex items-center justify-between text-sm">
+                              <span className="text-neu-600">Revenue</span>
+                              <span className="font-semibold text-green-600">${app.revenue.toLocaleString()}</span>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+
+                          <div className="flex gap-2 mt-4">
+                            <button className="neu-button p-2 bg-blue-500 text-white hover:scale-105 transition-transform">
+                              <SafeIcon icon={FiEye} className="w-4 h-4" />
+                            </button>
+                            <button className="neu-button p-2 bg-green-500 text-white hover:scale-105 transition-transform">
+                              <SafeIcon icon={FiEdit} className="w-4 h-4" />
+                            </button>
+                            <button className="neu-button p-2 bg-purple-500 text-white hover:scale-105 transition-transform">
+                              <SafeIcon icon={FiBarChart} className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </motion.div>
           )}
 
-          {/* Enhanced Security Tab */}
+          {/* ✅ BEAUTIFUL SECURITY TAB */}
           {activeTab === 'security' && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="space-y-8"
             >
-              {/* Real-time Status Indicator */}
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="neu-card p-4 bg-gradient-to-r from-green-50 to-blue-50"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-green-700 font-medium">Security Monitoring Active</span>
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    Threat Level: <span className={`font-semibold ${
-                      securityMetrics.threatLevel === 'Low' ? 'text-green-600' :
-                      securityMetrics.threatLevel === 'Medium' ? 'text-yellow-600' : 'text-red-600'
-                    }`}>{securityMetrics.threatLevel}</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Security Metrics */}
-              <div className="neu-card p-8 bg-gray-800">
+              {/* Security Overview */}
+              <div className="neu-card p-8 bg-gradient-to-br from-white to-red-50">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                    <SafeIcon icon={FiShield} className="w-6 h-6 text-green-400" />
+                  <h2 className="text-2xl font-bold text-neu-900 flex items-center gap-2">
+                    <SafeIcon icon={FiShield} className="w-6 h-6 text-red-600" />
                     Security Dashboard
                   </h2>
-                  <div className="text-sm text-green-400 flex items-center gap-2">
-                    <SafeIcon icon={FiActivity} className="w-4 h-4" />
-                    Live Monitoring
+                  <div className="flex items-center gap-4">
+                    <div className={`text-sm font-medium flex items-center gap-2 ${
+                      securityMetrics.threatLevel === 'Low' ? 'text-green-600' : 
+                      securityMetrics.threatLevel === 'Medium' ? 'text-yellow-600' : 'text-red-600'
+                    }`}>
+                      <div className={`w-2 h-2 rounded-full animate-pulse ${
+                        securityMetrics.threatLevel === 'Low' ? 'bg-green-500' : 
+                        securityMetrics.threatLevel === 'Medium' ? 'bg-yellow-500' : 'bg-red-500'
+                      }`}></div>
+                      Threat Level: {securityMetrics.threatLevel}
+                    </div>
                   </div>
                 </div>
 
+                {/* Security Metrics */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                   {[
                     {
-                      label: 'Threat Level',
-                      value: securityMetrics.threatLevel,
-                      icon: FiShield,
-                      color: securityMetrics.threatLevel === 'Low' ? 'text-green-400' : 
-                             securityMetrics.threatLevel === 'Medium' ? 'text-yellow-400' : 'text-red-400',
-                      bg: securityMetrics.threatLevel === 'Low' ? 'bg-green-900/30' :
-                          securityMetrics.threatLevel === 'Medium' ? 'bg-yellow-900/30' : 'bg-red-900/30'
-                    },
-                    {
                       label: 'Blocked Attacks',
                       value: securityMetrics.blockedAttacks,
-                      icon: FiXCircle,
-                      color: 'text-red-400',
-                      bg: 'bg-red-900/30'
+                      icon: FiShield,
+                      color: 'text-red-600',
+                      bg: 'from-red-100 to-pink-100'
                     },
                     {
                       label: 'Active Connections',
                       value: securityMetrics.activeConnections,
-                      icon: FiWifi,
-                      color: 'text-blue-400',
-                      bg: 'bg-blue-900/30'
+                      icon: FiUsers,
+                      color: 'text-blue-600',
+                      bg: 'from-blue-100 to-cyan-100'
                     },
                     {
                       label: 'Failed Logins',
                       value: securityMetrics.failedLogins,
-                      icon: FiLock,
-                      color: 'text-yellow-400',
-                      bg: 'bg-yellow-900/30'
+                      icon: FiXCircle,
+                      color: 'text-yellow-600',
+                      bg: 'from-yellow-100 to-orange-100'
+                    },
+                    {
+                      label: 'Security Score',
+                      value: '98%',
+                      icon: FiCheckCircle,
+                      color: 'text-green-600',
+                      bg: 'from-green-100 to-emerald-100'
                     }
                   ].map((metric, index) => (
                     <motion.div
@@ -767,155 +912,119 @@ const AdminDashboard = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className={`neu-card-inset p-6 ${metric.bg} hover:scale-105 transition-transform`}
+                      className={`neu-card-inset p-6 bg-gradient-to-br ${metric.bg} hover:scale-105 transition-transform`}
                     >
                       <div className="flex items-center gap-3 mb-3">
                         <SafeIcon icon={metric.icon} className={`w-6 h-6 ${metric.color}`} />
-                        <span className="text-gray-300 text-sm font-medium">{metric.label}</span>
+                        <span className="text-neu-700 text-sm font-medium">{metric.label}</span>
                       </div>
-                      <div className="text-2xl font-bold text-white">{metric.value}</div>
+                      <div className="text-2xl font-bold text-neu-900">{metric.value}</div>
                     </motion.div>
                   ))}
                 </div>
 
-                {/* Security Charts */}
-                <div className="grid lg:grid-cols-2 gap-8">
-                  {/* Real-time Security Logs */}
-                  <div className="neu-card-inset p-6 bg-gray-700/30">
-                    <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                      <SafeIcon icon={FiActivity} className="w-5 h-5 text-green-400" />
-                      Live Security Events
+                {/* Security Logs */}
+                <div className="neu-card-inset p-6 bg-white/70">
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-xl font-bold text-neu-900">Security Logs</h3>
+                    <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                    </h3>
-                    <div className="space-y-3 max-h-80 overflow-y-auto">
-                      {securityLogs.map((log) => (
-                        <motion.div
-                          key={log.id}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          className="neu-card-inset p-3 bg-gray-600/30"
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <div className={`w-3 h-3 rounded-full ${
-                                log.severity === 'info' ? 'bg-blue-400' :
-                                log.severity === 'warning' ? 'bg-yellow-400' : 'bg-red-400'
-                              }`}></div>
-                              <div>
-                                <div className="text-white font-medium text-sm">{log.message}</div>
-                                <div className="text-gray-400 text-xs">
-                                  {log.ip} • {log.location}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="text-gray-400 text-xs">{log.time}</div>
-                          </div>
-                        </motion.div>
-                      ))}
+                      <span className="text-green-600 text-sm font-medium">Live Monitoring</span>
                     </div>
                   </div>
 
-                  {/* Security Status */}
-                  <div className="neu-card-inset p-6 bg-gray-700/30">
-                    <h3 className="text-xl font-bold text-white mb-6">System Security Status</h3>
-                    <div className="space-y-4">
-                      {[
-                        { component: 'Firewall', status: 'Active', icon: FiShield, color: 'text-green-400' },
-                        { component: 'SSL Certificates', status: 'Valid', icon: FiLock, color: 'text-green-400' },
-                        { component: 'DDoS Protection', status: 'Enabled', icon: FiWifi, color: 'text-green-400' },
-                        { component: 'Intrusion Detection', status: 'Monitoring', icon: FiEye, color: 'text-blue-400' },
-                        { component: 'Access Control', status: 'Enforced', icon: FiUserCheck, color: 'text-green-400' },
-                        { component: 'Data Encryption', status: 'AES-256', icon: FiDatabase, color: 'text-green-400' }
-                      ].map((item, index) => (
-                        <motion.div
-                          key={item.component}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          className="flex items-center justify-between p-3 neu-card-inset bg-gray-600/20"
-                        >
-                          <div className="flex items-center gap-3">
-                            <SafeIcon icon={item.icon} className={`w-5 h-5 ${item.color}`} />
-                            <span className="text-white font-medium">{item.component}</span>
-                          </div>
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                            item.status === 'Active' || item.status === 'Valid' || item.status === 'Enabled' || item.status === 'Enforced' || item.status === 'AES-256'
-                              ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
-                          }`}>
-                            {item.status}
-                          </span>
-                        </motion.div>
-                      ))}
+                  <div className="space-y-3">
+                    <div className="grid grid-cols-6 gap-4 text-sm font-medium text-neu-600 border-b border-neu-200 pb-2">
+                      <span>Time</span>
+                      <span>Type</span>
+                      <span>Severity</span>
+                      <span>Message</span>
+                      <span>IP Address</span>
+                      <span>Location</span>
                     </div>
+                    {securityLogs.map((log) => (
+                      <motion.div
+                        key={log.id}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="grid grid-cols-6 gap-4 text-sm neu-card-inset p-3 bg-white/50 hover:bg-white transition-colors"
+                      >
+                        <span className="text-neu-900 font-mono">{log.time}</span>
+                        <span className="text-neu-700 capitalize">{log.type.replace('_', ' ')}</span>
+                        <span className={`px-2 py-1 rounded-full text-xs ${
+                          log.severity === 'info' ? 'bg-blue-100 text-blue-800' :
+                          log.severity === 'warning' ? 'bg-yellow-100 text-yellow-800' :
+                          'bg-red-100 text-red-800'
+                        }`}>
+                          {log.severity}
+                        </span>
+                        <span className="text-neu-700">{log.message}</span>
+                        <span className="text-neu-600 font-mono">{log.ip}</span>
+                        <span className="text-neu-500">{log.location}</span>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
               </div>
             </motion.div>
           )}
 
-          {/* Enhanced System Tab */}
+          {/* ✅ BEAUTIFUL SYSTEM TAB */}
           {activeTab === 'system' && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="space-y-8"
             >
-              {/* Real-time Status Indicator */}
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="neu-card p-4 bg-gradient-to-r from-green-50 to-blue-50"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-green-700 font-medium">System Health Monitoring</span>
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    Uptime: <span className="font-semibold text-green-600">{systemMetrics.uptime}</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* System Metrics */}
-              <div className="neu-card p-8 bg-gray-800">
+              {/* System Overview */}
+              <div className="neu-card p-8 bg-gradient-to-br from-white to-gray-50">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                    <SafeIcon icon={FiMonitor} className="w-6 h-6 text-blue-400" />
-                    System Performance
+                  <h2 className="text-2xl font-bold text-neu-900 flex items-center gap-2">
+                    <SafeIcon icon={FiMonitor} className="w-6 h-6 text-gray-600" />
+                    System Monitoring
                   </h2>
-                  <div className="text-sm text-green-400 flex items-center gap-2">
-                    <SafeIcon icon={FiActivity} className="w-4 h-4" />
-                    Real-time Monitoring
+                  <div className="flex items-center gap-4">
+                    <div className="text-sm text-green-600 flex items-center gap-2">
+                      <SafeIcon icon={FiActivity} className="w-4 h-4" />
+                      System Healthy
+                    </div>
                   </div>
                 </div>
 
-                {/* Real-time Performance Metrics */}
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                {/* System Metrics */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                   {[
                     {
                       label: 'CPU Usage',
                       value: `${systemMetrics.cpuUsage.toFixed(1)}%`,
                       icon: FiCpu,
-                      color: systemMetrics.cpuUsage > 80 ? 'text-red-400' : systemMetrics.cpuUsage > 60 ? 'text-yellow-400' : 'text-green-400',
-                      bg: systemMetrics.cpuUsage > 80 ? 'bg-red-900/30' : systemMetrics.cpuUsage > 60 ? 'bg-yellow-900/30' : 'bg-green-900/30',
-                      percentage: systemMetrics.cpuUsage
+                      color: 'text-blue-600',
+                      bg: 'from-blue-100 to-cyan-100',
+                      progress: systemMetrics.cpuUsage
                     },
                     {
                       label: 'Memory Usage',
                       value: `${systemMetrics.memoryUsage.toFixed(1)}%`,
                       icon: FiHardDrive,
-                      color: systemMetrics.memoryUsage > 80 ? 'text-red-400' : systemMetrics.memoryUsage > 60 ? 'text-yellow-400' : 'text-green-400',
-                      bg: systemMetrics.memoryUsage > 80 ? 'bg-red-900/30' : systemMetrics.memoryUsage > 60 ? 'bg-yellow-900/30' : 'bg-green-900/30',
-                      percentage: systemMetrics.memoryUsage
+                      color: 'text-purple-600',
+                      bg: 'from-purple-100 to-pink-100',
+                      progress: systemMetrics.memoryUsage
                     },
                     {
                       label: 'Disk Usage',
                       value: `${systemMetrics.diskUsage.toFixed(1)}%`,
                       icon: FiDatabase,
-                      color: systemMetrics.diskUsage > 80 ? 'text-red-400' : systemMetrics.diskUsage > 60 ? 'text-yellow-400' : 'text-green-400',
-                      bg: systemMetrics.diskUsage > 80 ? 'bg-red-900/30' : systemMetrics.diskUsage > 60 ? 'bg-yellow-900/30' : 'bg-green-900/30',
-                      percentage: systemMetrics.diskUsage
+                      color: 'text-green-600',
+                      bg: 'from-green-100 to-emerald-100',
+                      progress: systemMetrics.diskUsage
+                    },
+                    {
+                      label: 'Uptime',
+                      value: systemMetrics.uptime,
+                      icon: FiServer,
+                      color: 'text-yellow-600',
+                      bg: 'from-yellow-100 to-orange-100',
+                      progress: 99.96
                     }
                   ].map((metric, index) => (
                     <motion.div
@@ -923,122 +1032,91 @@ const AdminDashboard = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className={`neu-card-inset p-6 ${metric.bg} hover:scale-105 transition-transform`}
+                      className={`neu-card-inset p-6 bg-gradient-to-br ${metric.bg} hover:scale-105 transition-transform`}
                     >
                       <div className="flex items-center gap-3 mb-3">
                         <SafeIcon icon={metric.icon} className={`w-6 h-6 ${metric.color}`} />
-                        <span className="text-gray-300 text-sm font-medium">{metric.label}</span>
+                        <span className="text-neu-700 text-sm font-medium">{metric.label}</span>
                       </div>
-                      <div className="text-2xl font-bold text-white mb-3">{metric.value}</div>
-                      <div className="w-full bg-gray-600 rounded-full h-2">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${metric.percentage}%` }}
-                          className={`h-2 rounded-full ${
-                            metric.percentage > 80 ? 'bg-red-500' :
-                            metric.percentage > 60 ? 'bg-yellow-500' : 'bg-green-500'
-                          }`}
-                        ></motion.div>
-                      </div>
+                      <div className="text-2xl font-bold text-neu-900 mb-3">{metric.value}</div>
+                      {metric.progress !== undefined && (
+                        <div className="w-full bg-neu-200 rounded-full h-2">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${metric.progress}%` }}
+                            transition={{ duration: 1, delay: index * 0.2 }}
+                            className={`bg-gradient-to-r ${metric.color.replace('text-', 'from-').replace('-600', '-500')} to-${metric.color.replace('text-', '').replace('-600', '-600')} h-2 rounded-full`}
+                          ></motion.div>
+                        </div>
+                      )}
                     </motion.div>
                   ))}
                 </div>
 
-                {/* System Charts */}
+                {/* Network Activity */}
                 <div className="grid lg:grid-cols-2 gap-8">
-                  {/* Network Activity */}
-                  <div className="neu-card-inset p-6 bg-gray-700/30">
-                    <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                      <SafeIcon icon={FiWifi} className="w-5 h-5 text-blue-400" />
+                  <div className="neu-card-inset p-6 bg-white/70">
+                    <h3 className="text-xl font-bold text-neu-900 mb-6 flex items-center gap-2">
+                      <SafeIcon icon={FiWifi} className="w-5 h-5 text-blue-600" />
                       Network Activity
-                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-300">Network In</span>
-                        <span className="text-green-400 font-semibold">{systemMetrics.networkIn.toFixed(1)} MB/s</span>
+                        <span className="text-neu-600">Network In</span>
+                        <span className="font-semibold text-green-600">{systemMetrics.networkIn.toFixed(1)} MB/s</span>
                       </div>
-                      <div className="w-full bg-gray-600 rounded-full h-3">
+                      <div className="w-full bg-neu-200 rounded-full h-2">
                         <motion.div
                           initial={{ width: 0 }}
-                          animate={{ width: `${(systemMetrics.networkIn / 100) * 100}%` }}
-                          className="bg-green-500 h-3 rounded-full"
+                          animate={{ width: `${systemMetrics.networkIn}%` }}
+                          transition={{ duration: 1 }}
+                          className="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full"
                         ></motion.div>
                       </div>
-                      
-                      <div className="flex items-center justify-between mt-4">
-                        <span className="text-gray-300">Network Out</span>
-                        <span className="text-blue-400 font-semibold">{systemMetrics.networkOut.toFixed(1)} MB/s</span>
+                      <div className="flex items-center justify-between">
+                        <span className="text-neu-600">Network Out</span>
+                        <span className="font-semibold text-blue-600">{systemMetrics.networkOut.toFixed(1)} MB/s</span>
                       </div>
-                      <div className="w-full bg-gray-600 rounded-full h-3">
+                      <div className="w-full bg-neu-200 rounded-full h-2">
                         <motion.div
                           initial={{ width: 0 }}
-                          animate={{ width: `${(systemMetrics.networkOut / 100) * 100}%` }}
-                          className="bg-blue-500 h-3 rounded-full"
+                          animate={{ width: `${systemMetrics.networkOut}%` }}
+                          transition={{ duration: 1, delay: 0.2 }}
+                          className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
                         ></motion.div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Service Status */}
-                  <div className="neu-card-inset p-6 bg-gray-700/30">
-                    <h3 className="text-xl font-bold text-white mb-6">Service Status</h3>
+                  <div className="neu-card-inset p-6 bg-white/70">
+                    <h3 className="text-xl font-bold text-neu-900 mb-6 flex items-center gap-2">
+                      <SafeIcon icon={FiCloud} className="w-5 h-5 text-purple-600" />
+                      System Status
+                    </h3>
                     <div className="space-y-4">
                       {[
-                        { service: 'Web Server', status: 'Running', icon: FiServer, uptime: '99.96%' },
-                        { service: 'Database', status: 'Running', icon: FiDatabase, uptime: '99.98%' },
-                        { service: 'API Gateway', status: 'Running', icon: FiCloud, uptime: '99.94%' },
-                        { service: 'CDN', status: 'Running', icon: FiGlobe, uptime: '99.99%' },
-                        { service: 'Load Balancer', status: 'Running', icon: FiWifi, uptime: '99.95%' },
-                        { service: 'Cache', status: 'Running', icon: FiCpu, uptime: '99.97%' }
+                        { service: 'Web Server', status: 'Online', color: 'text-green-600' },
+                        { service: 'Database', status: 'Online', color: 'text-green-600' },
+                        { service: 'Cache', status: 'Online', color: 'text-green-600' },
+                        { service: 'CDN', status: 'Online', color: 'text-green-600' },
+                        { service: 'Email Service', status: 'Online', color: 'text-green-600' },
+                        { service: 'Backup', status: 'Running', color: 'text-blue-600' }
                       ].map((service, index) => (
                         <motion.div
                           key={service.service}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 }}
-                          className="flex items-center justify-between p-3 neu-card-inset bg-gray-600/20"
+                          className="flex items-center justify-between p-3 neu-card-inset bg-white/50"
                         >
-                          <div className="flex items-center gap-3">
-                            <SafeIcon icon={service.icon} className="w-5 h-5 text-blue-400" />
-                            <span className="text-white font-medium">{service.service}</span>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <span className="text-gray-300 text-sm">{service.uptime}</span>
-                            <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                              {service.status}
-                            </span>
-                          </div>
+                          <span className="text-neu-900 font-medium">{service.service}</span>
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            service.status === 'Online' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
+                          }`}>
+                            {service.status}
+                          </span>
                         </motion.div>
                       ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Additional System Info */}
-                <div className="mt-8 neu-card-inset p-6 bg-gray-700/30">
-                  <h3 className="text-xl font-bold text-white mb-6">System Information</h3>
-                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="text-center">
-                      <div className="neu-button p-4 inline-flex mx-auto mb-3 bg-blue-500 text-white">
-                        <SafeIcon icon={FiServer} className="w-6 h-6" />
-                      </div>
-                      <div className="text-white font-semibold">Response Time</div>
-                      <div className="text-green-400 text-lg font-bold">145ms</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="neu-button p-4 inline-flex mx-auto mb-3 bg-green-500 text-white">
-                        <SafeIcon icon={FiCheckCircle} className="w-6 h-6" />
-                      </div>
-                      <div className="text-white font-semibold">System Uptime</div>
-                      <div className="text-green-400 text-lg font-bold">{systemMetrics.uptime}</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="neu-button p-4 inline-flex mx-auto mb-3 bg-purple-500 text-white">
-                        <SafeIcon icon={FiActivity} className="w-6 h-6" />
-                      </div>
-                      <div className="text-white font-semibold">Active Processes</div>
-                      <div className="text-green-400 text-lg font-bold">1,247</div>
                     </div>
                   </div>
                 </div>

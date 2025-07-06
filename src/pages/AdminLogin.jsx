@@ -8,7 +8,11 @@ const { FiShield, FiLock, FiEye, FiEyeOff, FiAlertTriangle } = FiIcons;
 
 const AdminLogin = () => {
   const navigate = useNavigate();
-  const [credentials, setCredentials] = useState({ username: '', password: '', token: '' });
+  const [credentials, setCredentials] = useState({
+    username: '',
+    password: '',
+    token: ''
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -38,7 +42,6 @@ const AdminLogin = () => {
       
       localStorage.setItem('admin_session', sessionToken);
       localStorage.setItem('admin_login_time', Date.now().toString());
-      
       navigate('/admin/dashboard');
     } else {
       setAttempts(prev => prev + 1);
@@ -52,17 +55,17 @@ const AdminLogin = () => {
         }, 300000); // 5 minute lockout
       }
     }
-    
+
     setIsLoading(false);
   };
 
   if (isLocked) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center p-6">
+      <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center p-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="neu-card p-8 max-w-md w-full bg-red-50"
+          className="neu-card p-8 max-w-md w-full bg-gradient-to-br from-white to-red-50"
         >
           <div className="text-center">
             <SafeIcon icon={FiShield} className="w-16 h-16 text-red-600 mx-auto mb-4" />
@@ -75,36 +78,36 @@ const AdminLogin = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-6">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="neu-card p-8 max-w-md w-full bg-gray-800 border border-blue-500/30"
+        className="neu-card p-8 max-w-md w-full bg-gradient-to-br from-white to-blue-50"
       >
         <div className="text-center mb-8">
-          <SafeIcon icon={FiShield} className="w-16 h-16 text-blue-400 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-white mb-2">Secure Admin Access</h2>
-          <p className="text-gray-300">Umbrella Analytics Dashboard</p>
-          <div className="text-xs text-gray-400 mt-2">Attempts: {attempts}/3</div>
+          <SafeIcon icon={FiShield} className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-neu-900 mb-2">Secure Admin Access</h2>
+          <p className="text-neu-600">Umbrella Analytics Dashboard</p>
+          <div className="text-xs text-neu-500 mt-2">Attempts: {attempts}/3</div>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-neu-700 mb-2">
               Admin Username
             </label>
             <input
               type="text"
               value={credentials.username}
               onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
-              className="w-full neu-input p-3 bg-gray-700 text-white border-gray-600"
+              className="w-full neu-input p-3 text-neu-700"
               placeholder="Enter admin username"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-neu-700 mb-2">
               Password
             </label>
             <div className="relative">
@@ -112,14 +115,14 @@ const AdminLogin = () => {
                 type={showPassword ? 'text' : 'password'}
                 value={credentials.password}
                 onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
-                className="w-full neu-input p-3 bg-gray-700 text-white border-gray-600 pr-10"
+                className="w-full neu-input p-3 text-neu-700 pr-10"
                 placeholder="Enter secure password"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neu-500"
               >
                 <SafeIcon icon={showPassword ? FiEyeOff : FiEye} className="w-5 h-5" />
               </button>
@@ -127,14 +130,14 @@ const AdminLogin = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-neu-700 mb-2">
               2FA Token
             </label>
             <input
               type="text"
               value={credentials.token}
               onChange={(e) => setCredentials({ ...credentials, token: e.target.value })}
-              className="w-full neu-input p-3 bg-gray-700 text-white border-gray-600"
+              className="w-full neu-input p-3 text-neu-700"
               placeholder="6-digit code"
               maxLength="6"
               required
@@ -142,7 +145,7 @@ const AdminLogin = () => {
           </div>
 
           {error && (
-            <div className="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded">
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
               <div className="flex items-center gap-2">
                 <SafeIcon icon={FiAlertTriangle} className="w-4 h-4" />
                 {error}
@@ -153,7 +156,7 @@ const AdminLogin = () => {
           <button
             type="submit"
             disabled={isLoading || isLocked}
-            className="w-full neu-button py-3 bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
+            className="w-full neu-button py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:scale-105 transition-transform disabled:opacity-50 shadow-xl"
           >
             {isLoading ? (
               <div className="flex items-center justify-center gap-2">
@@ -169,12 +172,12 @@ const AdminLogin = () => {
           </button>
         </form>
 
-        <div className="mt-6 p-4 bg-blue-900/30 rounded-lg">
-          <p className="text-blue-200 text-xs text-center mb-2">
+        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+          <p className="text-blue-700 text-xs text-center mb-2">
             <SafeIcon icon={FiShield} className="w-4 h-4 inline mr-1" />
             Demo Credentials
           </p>
-          <div className="text-gray-300 text-xs space-y-1">
+          <div className="text-neu-700 text-xs space-y-1">
             <div><strong>Username:</strong> admin_umbrella_2024</div>
             <div><strong>Password:</strong> UmBr3ll@_S3cur3_2024!</div>
             <div><strong>2FA Token:</strong> 847392</div>

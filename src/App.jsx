@@ -3,6 +3,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
 import AppStore from './components/AppStore';
+import AppPreview from './pages/AppPreview'; // ✅ New preview page
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import CookiePolicy from './pages/CookiePolicy';
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/marketplace" element={<AppStore />} />
+          <Route path="/preview/:appId" element={<AppPreview />} /> {/* ✅ New route for app previews */}
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/cookies" element={<CookiePolicy />} />
@@ -35,16 +37,22 @@ function App() {
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={
-            <AdminRoute>
-              <AdminDashboard />
-            </AdminRoute>
-          } />
-          <Route path="/admin/messages" element={
-            <AdminRoute>
-              <AdminMessages />
-            </AdminRoute>
-          } />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/messages"
+            element={
+              <AdminRoute>
+                <AdminMessages />
+              </AdminRoute>
+            }
+          />
           
           {/* Placeholder routes for other footer links */}
           <Route path="/careers" element={<About />} />
@@ -53,7 +61,7 @@ function App() {
           <Route path="/status" element={<Help />} />
           <Route path="/bugs" element={<Help />} />
         </Routes>
-        
+
         {/* Chat Widget - Available on all pages except admin */}
         <ChatWidget />
       </div>

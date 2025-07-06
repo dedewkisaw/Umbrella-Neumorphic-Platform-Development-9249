@@ -5,15 +5,34 @@ import SafeIcon from '../common/SafeIcon';
 import useDataStore from '../stores/DataStore';
 import { useRealtimeData } from '../hooks/useRealtimeData';
 
-const { FiUsers, FiMail, FiPhone, FiCalendar, FiDollarSign, FiShoppingCart, FiEye, FiEdit, FiTrash, FiUserCheck, FiUserX, FiFilter, FiSearch, FiDownload, FiMoreHorizontal, FiMapPin, FiMonitor, FiActivity } = FiIcons;
+const {
+  FiUsers,
+  FiMail,
+  FiPhone,
+  FiCalendar,
+  FiDollarSign,
+  FiShoppingCart,
+  FiEye,
+  FiEdit,
+  FiTrash,
+  FiUserCheck,
+  FiUserX,
+  FiFilter,
+  FiSearch,
+  FiDownload,
+  FiMoreHorizontal,
+  FiMapPin,
+  FiMonitor,
+  FiActivity
+} = FiIcons;
 
 const AdminUserManagement = () => {
   const { users, transactions, updateUser, getStats } = useDataStore();
   const stats = getStats();
-  
+
   // Enable real-time updates
   useRealtimeData(15000);
-  
+
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [planFilter, setPlanFilter] = useState('all');
@@ -100,7 +119,7 @@ const AdminUserManagement = () => {
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
             <span className="text-blue-700 font-medium">User Data Live</span>
           </div>
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-neu-600">
             Active users: {activeUsers} | Online now: {Math.floor(activeUsers * 0.3)}
           </div>
         </div>
@@ -117,32 +136,32 @@ const AdminUserManagement = () => {
             label: 'Total Users',
             value: totalUsers.toLocaleString(),
             icon: FiUsers,
-            color: 'text-blue-400',
-            bg: 'bg-blue-900/30',
+            color: 'text-blue-600',
+            bg: 'from-blue-100 to-cyan-100',
             subtext: `+${userActivity.lastWeek} this week`
           },
           {
             label: 'Active Users',
             value: activeUsers.toLocaleString(),
             icon: FiUserCheck,
-            color: 'text-green-400',
-            bg: 'bg-green-900/30',
+            color: 'text-green-600',
+            bg: 'from-green-100 to-emerald-100',
             subtext: `${userActivity.last24Hours} active today`
           },
           {
             label: 'Total Revenue',
             value: `$${totalRevenue.toLocaleString()}`,
             icon: FiDollarSign,
-            color: 'text-green-400',
-            bg: 'bg-green-900/30',
+            color: 'text-green-600',
+            bg: 'from-green-100 to-emerald-100',
             subtext: 'All time'
           },
           {
             label: 'Avg. Spent',
             value: `$${avgSpent.toFixed(2)}`,
             icon: FiShoppingCart,
-            color: 'text-purple-400',
-            bg: 'bg-purple-900/30',
+            color: 'text-purple-600',
+            bg: 'from-purple-100 to-pink-100',
             subtext: 'Per user'
           }
         ].map((stat, index) => (
@@ -151,14 +170,14 @@ const AdminUserManagement = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className={`neu-card-inset p-6 ${stat.bg} hover:scale-105 transition-transform`}
+            className={`neu-card-inset p-6 bg-gradient-to-br ${stat.bg} hover:scale-105 transition-transform`}
           >
             <div className="flex items-center gap-3 mb-3">
               <SafeIcon icon={stat.icon} className={`w-6 h-6 ${stat.color}`} />
-              <span className="text-gray-300 text-sm font-medium">{stat.label}</span>
+              <span className="text-neu-700 text-sm font-medium">{stat.label}</span>
             </div>
-            <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-            <div className="text-xs text-gray-400">{stat.subtext}</div>
+            <div className="text-2xl font-bold text-neu-900 mb-1">{stat.value}</div>
+            <div className="text-xs text-neu-500">{stat.subtext}</div>
           </motion.div>
         ))}
       </motion.div>
@@ -167,19 +186,19 @@ const AdminUserManagement = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="neu-card p-6 bg-gray-800"
+        className="neu-card p-6 bg-gradient-to-br from-white to-blue-50"
       >
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-xl font-bold text-white flex items-center gap-2">
-            <SafeIcon icon={FiUsers} className="w-6 h-6 text-blue-400" />
+          <h3 className="text-xl font-bold text-neu-900 flex items-center gap-2">
+            <SafeIcon icon={FiUsers} className="w-6 h-6 text-blue-600" />
             User Management
           </h3>
           <div className="flex items-center gap-4">
-            <div className="text-sm text-green-400 flex items-center gap-2">
+            <div className="text-sm text-green-600 flex items-center gap-2">
               <SafeIcon icon={FiActivity} className="w-4 h-4" />
               Live Updates
             </div>
-            <button className="neu-button px-4 py-2 bg-blue-600 text-white hover:bg-blue-700">
+            <button className="neu-button px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:scale-105 transition-transform shadow-xl">
               <div className="flex items-center gap-2">
                 <SafeIcon icon={FiDownload} className="w-4 h-4" />
                 Export
@@ -191,19 +210,19 @@ const AdminUserManagement = () => {
         {/* Filters */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <div className="relative">
-            <SafeIcon icon={FiSearch} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+            <SafeIcon icon={FiSearch} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neu-400 w-4 h-4" />
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full neu-input pl-10 pr-4 py-2 bg-gray-700 text-white"
+              className="w-full neu-input pl-10 pr-4 py-2 text-neu-700"
               placeholder="Search users..."
             />
           </div>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="neu-input p-2 bg-gray-700 text-white"
+            className="neu-input p-2 text-neu-700"
           >
             <option value="all">All Status</option>
             <option value="active">Active</option>
@@ -213,7 +232,7 @@ const AdminUserManagement = () => {
           <select
             value={planFilter}
             onChange={(e) => setPlanFilter(e.target.value)}
-            className="neu-input p-2 bg-gray-700 text-white"
+            className="neu-input p-2 text-neu-700"
           >
             <option value="all">All Plans</option>
             <option value="Free">Free</option>
@@ -221,7 +240,7 @@ const AdminUserManagement = () => {
             <option value="Business">Business</option>
             <option value="Enterprise">Enterprise</option>
           </select>
-          <div className="text-gray-300 text-sm flex items-center">
+          <div className="text-neu-700 text-sm flex items-center">
             Showing {filteredUsers.length} of {totalUsers} users
           </div>
         </div>
@@ -230,15 +249,15 @@ const AdminUserManagement = () => {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-gray-600">
-                <th className="text-left p-3 text-gray-300">User</th>
-                <th className="text-left p-3 text-gray-300">Status</th>
-                <th className="text-left p-3 text-gray-300">Plan</th>
-                <th className="text-left p-3 text-gray-300">Spent</th>
-                <th className="text-left p-3 text-gray-300">Purchases</th>
-                <th className="text-left p-3 text-gray-300">Last Active</th>
-                <th className="text-left p-3 text-gray-300">Location</th>
-                <th className="text-left p-3 text-gray-300">Actions</th>
+              <tr className="border-b border-neu-300">
+                <th className="text-left p-3 text-neu-700">User</th>
+                <th className="text-left p-3 text-neu-700">Status</th>
+                <th className="text-left p-3 text-neu-700">Plan</th>
+                <th className="text-left p-3 text-neu-700">Spent</th>
+                <th className="text-left p-3 text-neu-700">Purchases</th>
+                <th className="text-left p-3 text-neu-700">Last Active</th>
+                <th className="text-left p-3 text-neu-700">Location</th>
+                <th className="text-left p-3 text-neu-700">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -253,7 +272,7 @@ const AdminUserManagement = () => {
                     key={user.id}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="border-b border-gray-700 hover:bg-gray-700/30"
+                    className="border-b border-neu-200 hover:bg-blue-50/30"
                   >
                     <td className="p-3">
                       <div className="flex items-center gap-3">
@@ -264,16 +283,16 @@ const AdminUserManagement = () => {
                             className="w-10 h-10 rounded-full object-cover"
                           />
                           {isOnline && (
-                            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-gray-800"></div>
+                            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
                           )}
                         </div>
                         <div>
-                          <div className="text-white font-medium flex items-center gap-2">
+                          <div className="text-neu-900 font-medium flex items-center gap-2">
                             {user.name}
                             {isOnline && <div className="w-2 h-2 bg-green-400 rounded-full"></div>}
                           </div>
-                          <div className="text-gray-400 text-sm">{user.email}</div>
-                          <div className="text-gray-500 text-xs">{user.browser}</div>
+                          <div className="text-neu-500 text-sm">{user.email}</div>
+                          <div className="text-neu-400 text-xs">{user.browser}</div>
                         </div>
                       </div>
                     </td>
@@ -288,15 +307,15 @@ const AdminUserManagement = () => {
                       </span>
                     </td>
                     <td className="p-3">
-                      <span className="text-green-400 font-semibold">${user.totalSpent.toFixed(2)}</span>
+                      <span className="text-green-600 font-semibold">${user.totalSpent.toFixed(2)}</span>
                     </td>
                     <td className="p-3">
-                      <span className="text-white">{user.purchases}</span>
+                      <span className="text-neu-900">{user.purchases}</span>
                     </td>
                     <td className="p-3">
-                      <div className="text-gray-300 text-sm">
+                      <div className="text-neu-700 text-sm">
                         {isOnline ? (
-                          <span className="text-green-400 flex items-center gap-1">
+                          <span className="text-green-600 flex items-center gap-1">
                             <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                             Online
                           </span>
@@ -306,7 +325,7 @@ const AdminUserManagement = () => {
                       </div>
                     </td>
                     <td className="p-3">
-                      <div className="flex items-center gap-1 text-gray-300 text-sm">
+                      <div className="flex items-center gap-1 text-neu-700 text-sm">
                         <SafeIcon icon={FiMapPin} className="w-3 h-3" />
                         {user.location}
                       </div>
@@ -315,21 +334,21 @@ const AdminUserManagement = () => {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleUserAction(user.id, 'activate')}
-                          className="neu-button p-2 bg-green-600 text-white hover:bg-green-700"
+                          className="neu-button p-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:scale-105 transition-transform"
                           title="Activate"
                         >
                           <SafeIcon icon={FiUserCheck} className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleUserAction(user.id, 'suspend')}
-                          className="neu-button p-2 bg-yellow-600 text-white hover:bg-yellow-700"
+                          className="neu-button p-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:scale-105 transition-transform"
                           title="Suspend"
                         >
                           <SafeIcon icon={FiUserX} className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleUserAction(user.id, 'delete')}
-                          className="neu-button p-2 bg-red-600 text-white hover:bg-red-700"
+                          className="neu-button p-2 bg-gradient-to-r from-red-500 to-pink-500 text-white hover:scale-105 transition-transform"
                           title="Delete"
                         >
                           <SafeIcon icon={FiTrash} className="w-4 h-4" />
@@ -345,9 +364,9 @@ const AdminUserManagement = () => {
 
         {filteredUsers.length === 0 && (
           <div className="text-center py-12">
-            <SafeIcon icon={FiUsers} className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-white mb-2">No Users Found</h3>
-            <p className="text-gray-400">Try adjusting your search or filter criteria.</p>
+            <SafeIcon icon={FiUsers} className="w-16 h-16 text-neu-400 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-neu-900 mb-2">No Users Found</h3>
+            <p className="text-neu-600">Try adjusting your search or filter criteria.</p>
           </div>
         )}
       </motion.div>
